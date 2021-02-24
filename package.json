@@ -1,0 +1,19 @@
+{
+  "name": "easy-commerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/al375909/Easy-Commerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/al375909/Easy-Commerce/issues"
+  },
+  "homepage": "https://github.com/al375909/Easy-Commerce#readme"
+}
