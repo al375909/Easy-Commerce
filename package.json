@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/al375909/Easy-Commerce/issues"
   },
-  "homepage": "https://github.com/al375909/Easy-Commerce#readme"
+  "homepage": "https://github.com/al375909/Easy-Commerce#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
