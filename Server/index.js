@@ -15,7 +15,11 @@ if (process.env.NODE_ENV === 'production') {
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  response.json({ 
+    anObject: { item1: "item1val", item2: "item2val" }, 
+    anArray: ["item1", "item2"], 
+    another: "item"
+  });
 });
 
 app.listen(PORT, () => {
