@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
-var cors = require('cors')
+var cors = require('cors');
+const data = require('./data.json');
 
 var PORT = process.env.PORT || 5000;
 /*
@@ -17,13 +18,10 @@ if (process.env.NODE_ENV === 'production') {
 app.use(cors())
 
 app.get('/', (req, res) => {
-  res.json({ 
-    anObject: { item1: "item1val", item2: "item2val" }, 
-    anArray: ["item1", "item2"], 
-    another: "item"
-  });
+  res.json(data);
 });
 
 app.listen(PORT, () => {
   console.log('Example app listening on port 8000!')
+ 
 });
