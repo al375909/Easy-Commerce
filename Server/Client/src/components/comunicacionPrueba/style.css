@@ -1,0 +1,14 @@
+@media(max-width:1024px){
+
+        
+    .card-container{
+        display: flex;
+        flex-flow: column ;
+    }
+
+    .card{
+        width: 100%;
+        margin-bottom: 20px ;
+    }
+
+}

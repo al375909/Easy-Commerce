@@ -30,7 +30,7 @@ export default function Comunicacion() {
 
     <div className="m-4">
      
-      <div>
+      <div className="card-container">
       {datos.map((item) =>
         
         <CommerceCard key={item.id} {...item}>
