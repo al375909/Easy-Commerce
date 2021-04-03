@@ -1,7 +1,7 @@
 import CommerceCard from "../CommerceCard";
 import "./style.css"
 export default function Commerces({ datos }) {
-
+//return
     return (
 
         <div className="m-4">

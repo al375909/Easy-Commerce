@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(cors())
 
 app.get('/', (req, res) => {
-  res.json(data);
+ 
 });
 
 app.listen(PORT, () => {
