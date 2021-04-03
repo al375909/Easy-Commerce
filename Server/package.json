@@ -19,6 +19,7 @@
   "homepage": "https://github.com/al375909/Easy-Commerce#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.5.1"
   }
 }

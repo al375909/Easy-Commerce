@@ -1,7 +1,18 @@
 const express = require('express')
 const app = express();
 var cors = require('cors');
-const data = require('./data.json');
+
+
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'uunsxlebscw6d7fec3tw',
+  host: 'bhafapey0pwu98xcw8yg-postgresql.services.clever-cloud.com',
+  database: 'bhafapey0pwu98xcw8yg',
+  password: 'qByDX0s7XrLuaijsWEwG',
+  port: 5432,
+});
+
+
 
 var PORT = process.env.PORT || 5000;
 /*
@@ -15,11 +26,28 @@ if (process.env.NODE_ENV === 'production') {
   });
 }*/
 
+
+
+
 app.use(cors())
 
-app.get('/', (req, res) => {
+const fun = async () => {
  
-});
+  const client = await pool.connect()
+  const result = await client.query({
+  rowMode: 'array',
+  text: 'SELECT * FROM usuario; ',
+})
+
+  console.log(result.rows)
+
+}
+
+
+
+app.get('/', (req, res) => {
+  fun();
+})
 
 app.listen(PORT, () => {
   console.log('Example app listening on port 8000!')
