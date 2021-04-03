@@ -32,24 +32,26 @@ if (process.env.NODE_ENV === 'production') {
 app.use(cors())
 
 const fun = async () => {
- 
+
   const client = await pool.connect()
   const result = await client.query({
-  rowMode: 'array',
-  text: 'SELECT * FROM usuario; ',
-})
+    text: 'SELECT * FROM comercio; ',
+  })
 
-  console.log(result.rows)
+  
+  await client.end()
+  return result.rows
 
 }
 
 
-
-app.get('/', (req, res) => {
-  fun();
+app.get('/', async (req, res) => {
+  const q= await fun();
+  console.log(q)
+  res.send(q)
 })
 
 app.listen(PORT, () => {
   console.log('Example app listening on port 8000!')
- 
+
 });
