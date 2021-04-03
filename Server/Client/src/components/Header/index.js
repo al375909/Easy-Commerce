@@ -3,14 +3,14 @@ import "./style.css"
 export default function Header() {
 
 
-    return(
+    return (
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            
-                <a className="navbar-brand" href="#">
-                 <img src={cesta} />
-                </a>
-            
+
+            <a className="navbar-brand" href="#">
+                <img src={cesta} />
+            </a>
+
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -39,8 +39,11 @@ export default function Header() {
                     </li>
                 </ul>
 
-  </div>
-</nav>
-            );
-        
+            </div>
+            <div>
+                
+            </div>
+        </nav>
+    );
+
 }
