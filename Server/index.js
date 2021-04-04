@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+var path = require('path');
 var cors = require('cors');
 
 
@@ -29,33 +30,37 @@ if (process.env.NODE_ENV === 'production') {
 
 
 
-app.use(cors())
-app.use(express.static(path.join(__dirname, 'Client/build')));
+//app.use(cors())
+//app.use(express.static(path.join(__dirname, 'Client/build')));
 
 const fun = async () => {
 
-  const client = await pool.connect()
+  const client = await pool.connect();
+
   const result = await client.query({
     text: 'SELECT * FROM comercio; ',
-  })
+  });
+
 
   
-  await client.end()
-  return result.rows
+  await client.end();
+  return result.rows;
 
 }
+
+
+
+app.get('/', async (req, res) => {
+  const q= await fun();
+  console.log(q);
+  res.send(q);
+});
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname+'/Client/build/index.html'));
 });
 
-app.get('/', async (req, res) => {
-  const q= await fun();
-  console.log(q)
-  res.send(q)
-})
-
 app.listen(PORT, () => {
-  console.log('Example app listening on port 8000!')
+  console.log('Example app listening on port 5000!')
 
 });
