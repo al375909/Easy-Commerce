@@ -30,6 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'Client/build')));
 
 const fun = async () => {
 
@@ -44,6 +45,9 @@ const fun = async () => {
 
 }
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname+'/Client/build/index.html'));
+});
 
 app.get('/', async (req, res) => {
   const q= await fun();
