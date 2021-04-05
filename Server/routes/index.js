@@ -4,3 +4,5 @@ const commerce = require('../apiServices/commerce/routes');
 
 
 router.use('/', commerce);
+
+module.exports = router;
