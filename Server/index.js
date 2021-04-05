@@ -1,27 +1,50 @@
 const express = require('express')
 const app = express();
+var path = require('path');
 var cors = require('cors');
-const data = require('./data.json');
+
+
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'uunsxlebscw6d7fec3tw',
+  host: 'bhafapey0pwu98xcw8yg-postgresql.services.clever-cloud.com',
+  database: 'bhafapey0pwu98xcw8yg',
+  password: 'qByDX0s7XrLuaijsWEwG',
+  port: 5432,
+});
+
+
 
 var PORT = process.env.PORT || 5000;
-/*
-const path = require('path');
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/build')));
-// Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}*/
 
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'Client/build')));
 
-app.get('/', (req, res) => {
-  res.json(data);
+const fun = async () => {
+
+  const client = await pool.connect();
+
+  const result = await client.query({
+    text: 'SELECT * FROM comercio; ',
+  });
+
+
+  
+  await client.end();
+  return result.rows;
+
+}
+
+app.get('/', async (req, res) => {
+  const q= await fun();
+  console.log(q);
+  res.send(q);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname+'/Client/build/index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log('Example app listening on port 8000!')
- 
+  console.log('Example app listening on port 5000!');
 });
