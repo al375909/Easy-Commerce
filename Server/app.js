@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 var path = require("path");
 var cors = require("cors");
@@ -13,13 +13,15 @@ app.use('/', indexRouter);
 app.use(cors());
 app.use(express.static(path.join(__dirname, "Client/build")));
 
+/*
 
+--- Por defecto ---
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/Client/build/index.html"));
 });
+*/
+module.exports = app;
 
 app.listen(PORT, () => {
   console.log("Example app listening on port 5000!");
 });
-
-module.exports = app;
