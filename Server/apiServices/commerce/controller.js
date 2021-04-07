@@ -1,12 +1,14 @@
 const commerceModel = require("./model");
 
 module.exports = {
-  async getCommerce(req, res) {
-    const q = await commerceMode.listCommerce();
+  getCommerce: async function(req, res) {
+    console.log("que diuen");
+    const q = await commerceModel.listCommerce();
     console.log(q);
     res.send(q);
   },
-  async createCommerce(req, res){
+  createCommerce: async function(req, res){
+    console.log("que diuen");
     const q = await commerceModel.createCommerce({
         // Aquí le pasamos atributos básicos para la creación de un comercio
         //username: req.body.username,

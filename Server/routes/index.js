@@ -4,6 +4,8 @@ const commerce = require('../apiServices/commerce/routes');
 
 
 router.use('/', commerce);
-router.post('/', commerce);
+//router.post('/', commerce);
+
+
 
 module.exports = router;
