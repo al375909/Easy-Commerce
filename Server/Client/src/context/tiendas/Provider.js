@@ -13,6 +13,7 @@ export default function TiendasProvider({children}) {
     // local url = 
     const data = await (await axios.get(`/`))
     console.log("petición hecha")
+    console.log(data.data);
 
     //asignamos a nuestra variable de entorno por el hook la informacion recogida por la llamada a la api
     await setDatos(data.data)
