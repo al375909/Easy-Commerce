@@ -1,7 +1,12 @@
 const listCommerce = require("./model");
+const express = require('express');
+const controller = require('./controller');
 
-app.get("/", async (req, res) => {
-    const q = await listCommerce();
-    console.log(q);
-    res.send(q);
-});
+const router = express.Router();
+
+
+
+router.get('/' , controller.getCommerce);
+router.post('/', controller.createCommerce);
+
+module.exports = router;
