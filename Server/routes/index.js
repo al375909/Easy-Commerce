@@ -3,7 +3,10 @@ const router = express.Router();
 const commerce = require('../apiServices/commerce/routes');
 
 
-router.use('/', commerce);
+//router.use('/tiendas/listado', commerce);
+router.get('/tiendas/listado', (req, res) => {
+    res.send("QUE DIUEENN");
+});
 //router.post('/', commerce);
 
 

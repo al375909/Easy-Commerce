@@ -28,4 +28,4 @@ const createCommerce = async () => {
     console.log("Falta por hacer");
 };
 
-module.exports = listCommerce;
+module.exports.listCommerce = listCommerce;
