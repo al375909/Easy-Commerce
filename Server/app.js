@@ -20,11 +20,11 @@ app.get('/home', (req, res) => {
     res.send("la de dios");
 });
 
-app.get('/tiendas/listado', async (req, res) => {
+/*app.get('/tiendas/listado', async (req, res) => {
     const list = await dao.listCommerce();
     console.log(list);
     res.send(list);
-});
+});*/
 
 
 app.use('/tiendas/listado', indexRouter);

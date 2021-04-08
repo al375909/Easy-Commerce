@@ -4,9 +4,7 @@ const commerce = require('../apiServices/commerce/routes');
 
 
 //router.use('/tiendas/listado', commerce);
-router.get('/tiendas/listado', (req, res) => {
-    res.send("QUE DIUEENN");
-});
+router.get('/tiendas/listado', commerce);
 //router.post('/', commerce);
 
 
