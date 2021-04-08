@@ -6,7 +6,7 @@ const controller = require('./controller');
 const router = express.Router();
 
 
-router.get('/tiendas/listado' , controller.getCommerce);
+router.get('/' , controller.getCommerce);
 //router.post('/', controller.createCommerce());
 
 module.exports = router;
