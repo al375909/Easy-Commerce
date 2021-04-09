@@ -3,3 +3,32 @@
     width: auto;
 }
 
+.navbar{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+/* Cart */
+.cart-box{
+    height: 60px;
+    width: 60px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.cart-box .cart img{
+    width: 60%;
+}
+
+.cart-box .cart-products p{
+    margin: 0;
+    right: 2px;
+    position: relative;
+    bottom: 7px;
+}
+
+

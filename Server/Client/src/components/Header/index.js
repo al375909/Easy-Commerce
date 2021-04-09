@@ -1,4 +1,5 @@
 import cesta from "./cesta.png"
+import cart from "./cesta1.png"
 import "./style.css"
 export default function Header() {
 
@@ -6,44 +7,48 @@ export default function Header() {
     return (
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-
-            <a className="navbar-brand" href="#">
-                <img src={cesta} />
-            </a>
-
+            {/* Burger menu */}
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
+            
+            {/* Logo */}
+            <div className="navbar-brand">
+                <a href="/">
+                    <img src={cesta} />
+                </a>
+            </div>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            {/* Full width menu */}
+            <div className="navbar-links collapse navbar-collapse"  id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
                         <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
+                        <a className="nav-link" href="#">Mis pedidos</a>
                     </li>
                 </ul>
-
             </div>
-            <div>
-                
+
+            {/* Cart + User Pic */}
+            <div className="navbar-user">
+                <div className="cart-box"> 
+                    <div className="cart">
+                        <img src={cart} />
+                    </div>
+
+                    <div className="cart-products">
+                        <p>4</p>
+                    </div>
+                </div>
+
+                <div className="user-box">
+
+                </div>
             </div>
         </nav>
+
     );
 
 }
