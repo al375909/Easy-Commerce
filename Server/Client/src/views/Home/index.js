@@ -1,6 +1,6 @@
 import TiendasContext from "../../context/tiendas"
 import React, { useEffect, useContext } from 'react';
-import CommerceCard from "./components/CommerceCard"
+
 import Commerces from "./components/Commerces";
 import Header from "../../components/Header";
 export default function Home(){
