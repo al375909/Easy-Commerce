@@ -20,11 +20,15 @@
   },
   "homepage": "https://github.com/al375909/Easy-Commerce#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pg": "^8.5.1"
   },
   "engines": {
