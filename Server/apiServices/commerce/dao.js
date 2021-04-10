@@ -15,7 +15,7 @@ const listCommerce = async () => {
 
 
 // TODO: registro de comercios
-const createCommerce = async () => {
+const createCommerce = async (commerce) => {
     console.log("Falta por hacer");
 };
 
