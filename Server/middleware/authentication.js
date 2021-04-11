@@ -6,7 +6,19 @@ passport.use('local.signup', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true,
 }, async (req, username, password, done) => {
-    console.log(req.body);
+
+    const passwordHash = await bscrypt.hash(req.body.password, 10);
+    const newCommerce = {
+        cif: req.body.cif,
+        username: req.body.username,
+        password: passwordHash,
+        email: req.body.email,
+        nombre: req.body.nombre,
+        altitud: req.body.altitud,
+        latitud: req.body.latitud,
+    };
+
+    
 }));
 
 passport.serializeUser((user, done) => {
