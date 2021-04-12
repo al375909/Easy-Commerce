@@ -1,5 +1,7 @@
 import cesta from "./cesta.png"
 import cart from "./cesta1.png"
+import user from "./user.png"
+
 import "./style.css"
 export default function Header() {
 
@@ -44,7 +46,12 @@ export default function Header() {
                 </div>
 
                 <div className="user-box">
-
+                    <div className="user-pic">
+                        <img className="profile-pic" src={user} />
+                    </div>
+                    <div className="login">
+                        <p>Login</p>
+                    </div>
                 </div>
             </div>
         </nav>

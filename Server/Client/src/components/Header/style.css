@@ -11,6 +11,11 @@
 
 }
 
+.navbar-user{
+    display: flex;
+    flex-flow: row  ;
+}
+
 /* Cart */
 .cart-box{
     height: 60px;
@@ -31,4 +36,32 @@
     bottom: 7px;
 }
 
+.cart{
+    margin-top: 14px;
+}
 
+/* User icon */
+.user-box{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.user-pic{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #f44336;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.profile-pic{
+    width:50%;  
+}
+
+.login{
+    margin-left: 15px;
+    height: 21px;
+}
