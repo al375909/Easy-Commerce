@@ -3,6 +3,7 @@ import React, { useEffect, useContext } from 'react';
 import CommerceCard from "./components/CommerceCard"
 import Commerces from "./components/Commerces";
 import Header from "../../components/Header";
+import AddProductView from "../Products/AddProductView";
 export default function Home(){
 
     const { getDato, datos } = useContext(TiendasContext);
@@ -20,6 +21,8 @@ export default function Home(){
         <div>
         <Header />
         <Commerces datos={datos}/>
+        <AddProductView/>
         </div>
+
     );
 }
