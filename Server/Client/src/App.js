@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect } from 'react';
 import TiendasProvider from './context/tiendas/Provider.js';
 import Home from './views/Home';
+import Routes from './routes';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <TiendasProvider>
-      <Home />
+      <Routes />
     </TiendasProvider>
     
 
