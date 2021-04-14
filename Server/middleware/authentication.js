@@ -20,7 +20,7 @@ passport.use('local.signup', new LocalStrategy({
 
     
 }));
-
+// LA POLLA
 passport.serializeUser((user, done) => {
 
 });
