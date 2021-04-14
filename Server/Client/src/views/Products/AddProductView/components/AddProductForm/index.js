@@ -87,16 +87,11 @@ Peso escurrido: 250gr" maxlength="500" required></textarea>
                         styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
                         />
                     </div>
-           
-
-
-
-                    <div class="form row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-danger float-left">Cancelar</button>
+                    <div class="row button-row">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger float-left">Cancelar</button>                        
                         </div>
-                        
-                        <div class="col-6">
+                        <div class="col">
                             <button type="button" class="btn btn-success float-right">Subir artículo</button>
                         </div>
                     </div>

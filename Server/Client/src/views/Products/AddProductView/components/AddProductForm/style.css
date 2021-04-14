@@ -21,9 +21,15 @@
 
 .btn-success{
     width: 50%;
-    float: right;
+    position: absolute;
+    right: 0px;
 }
 
 .dropbox{
     margin-bottom: 4rem;
+    
+}
+
+.button-row{
+    width: 101%;
 }
