@@ -1,24 +1,39 @@
-.navbar-brand img{
+.burguer-menu {
+    border-radius: 20%;
+    border-color: rgb(197, 197, 197);
+}
+
+.left-menu {
+    background-color: rgb(36, 36, 104);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    z-index: 99;
+}
+
+.navbar-brand img {
     height: 100px;
     width: auto;
 }
 
-.navbar{
+.navbar {
     display: flex;
     flex-flow: row;
     align-items: center;
     justify-content: space-between;
-
 }
 
-.navbar-user{
+.navbar-user {
     display: flex;
-    flex-flow: row  ;
+    flex-flow: row;
     align-items: center;
 }
 
 /* Cart */
-.cart-box{
+
+.cart-box {
     height: 60px;
     width: 60px;
     display: flex;
@@ -26,29 +41,30 @@
     align-items: center;
 }
 
-.cart-box .cart img{
+.cart-box .cart img {
     width: 60%;
 }
 
-.cart-box .cart-products p{
+.cart-box .cart-products p {
     margin: 0;
     right: 2px;
     position: relative;
     bottom: 7px;
 }
 
-.cart{
+.cart {
     margin-top: 14px;
 }
 
 /* User icon */
-.user-box{
+
+.user-box {
     display: flex;
     flex-flow: row;
     align-items: center;
 }
 
-.user-pic{
+.user-pic {
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -56,19 +72,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-}
-.profile-pic{
-    width:50%;  
 }
 
-.login{
+.profile-pic {
+    width: 50%;
+}
+
+.login {
     margin-left: 15px;
     height: 21px;
 }
 
-.login button,
-.logout button{
+.login button, .logout button {
     border: 0;
     background-color: rgba(201, 76, 76, 0);
 }

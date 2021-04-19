@@ -56,7 +56,6 @@ export default function LoginForm({goHome}) {
                 
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
                 
-                <Link to="/">Mover</Link>
             </form>
         </div>
        
