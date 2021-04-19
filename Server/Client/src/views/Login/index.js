@@ -1,4 +1,5 @@
 import LoginForm from "./components/LoginForm";
+import Header from "../../components/Header";
 
 export default function Login(props){
 
@@ -7,7 +8,9 @@ export default function Login(props){
     }
 
     return(
+       
         <LoginForm goHome={goHome}></LoginForm>
+        
     );
 
 }

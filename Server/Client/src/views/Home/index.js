@@ -9,12 +9,12 @@ export default function Home(){
     const { getDato, datos } = useContext(TiendasContext);
     const {user,setUser} = useContext(SessionContext);
 
-    
+
     useEffect(() => {
       
       //al refrescar la pagina no se perdera la informacion del provider
       console.log("el usuario "+user);
-      sessionStorage.setItem('user',user)
+      localStorage.setItem('user',user)
     
       // Usa la función gteDato donde se setea la varibale datos al renderizar el componente
       getDato()

@@ -5,7 +5,7 @@ import SessionContext from "./index";
 
 export default function SessionProvider({children}) {
 
-  const [user, setUser] = useState(sessionStorage.getItem('user')||"");
+  const [user, setUser] = useState(localStorage.getItem('user')||"");
   const [isCommerce,setIsCommerce]= useState(false);
 
 

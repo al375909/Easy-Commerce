@@ -30,8 +30,8 @@ export default function LoginForm({goHome}) {
         setPassword("")
           
         //actualizamos el storage para persistencia ante refresh de la pagina
-        sessionStorage.clear()
-        await sessionStorage.setItem('user',user)
+        localStorage.clear()
+        await localStorage.setItem('user',user)
         goHome()
         
         
