@@ -20,16 +20,20 @@ export default function LoginForm({goHome}) {
 
     const {user,setUser} = useContext(SessionContext);
 
-
+    
     const handleSubmit = async (event) =>{
-        setUser(userName)
-          
+        
         event.preventDefault()
 
-        await sessionStorage.setItem('user',user)
-       // console.log(localStorage.getItem('user'))
+        setUser(userName)
+        //La contraseña mejor no dejarla por ahi la borramos de local mejor
         setPassword("")
+          
+        //actualizamos el storage para persistencia ante refresh de la pagina
+        sessionStorage.clear()
+        await sessionStorage.setItem('user',user)
         goHome()
+        
         
         
         
@@ -49,9 +53,9 @@ export default function LoginForm({goHome}) {
                     <label >Password</label>
                     <input type="password" className="form-control" value={password} onChange={event=>{setPassword(event.target.value)}} placeholder="Password" />
                 </div>
-                <Link to="/">
+                
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-                </Link>
+                
                 <Link to="/">Mover</Link>
             </form>
         </div>
