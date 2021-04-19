@@ -1,16 +1,22 @@
 import TiendasContext from "../../context/tiendas"
 import React, { useEffect, useContext } from 'react';
-import CommerceCard from "./components/CommerceCard"
+
 import Commerces from "./components/Commerces";
 import Header from "../../components/Header";
 import AddProductView from "../Products/AddProductView";
+import SessionContext from "../../context/session";
 export default function Home(){
 
     const { getDato, datos } = useContext(TiendasContext);
+    const {user,setUser} = useContext(SessionContext);
 
 
     useEffect(() => {
-  
+      
+      //al refrescar la pagina no se perdera la informacion del provider
+      console.log("el usuario "+user);
+      localStorage.setItem('user',user)
+    
       // Usa la función gteDato donde se setea la varibale datos al renderizar el componente
       getDato()
   
