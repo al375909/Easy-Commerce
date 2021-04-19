@@ -77,23 +77,26 @@ Peso escurrido: 250gr" maxlength="500" required></textarea>
                         <label for="inputInvent" class="form-label">Inventario</label>
                         <input type="number" class="form-control" id="inputInvent" placeholder="Indique el número de unidades" min="0" required/>
                     </div>
-                    <div class="form-group dropbox">
-                        <label for="inputInvent" class="form-label">Imagen del producto</label>
+                    <div>
+                        <div class="form-group dropbox">
+                            <label for="inputInvent" class="form-label">Imagen del producto</label>
+                            
+                            <Dropzone
+                            maxFiles={1}
+                            getFilesFromEvent={getFilesFromEvent}
+                            inputContent={'Arrastre la imagen o haga click para explorar'}
+                            styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
+                            />
+                        </div>
                         
-                        <Dropzone
-                        maxFiles={1}
-                        getFilesFromEvent={getFilesFromEvent}
-                        inputContent={'Arrastre la imagen o haga click para explorar'}
-                        styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
-                        />
-                    </div>
-                    <div class="row button-row">
+                        
                         <div class="col">
                             <button type="button" class="btn btn-danger float-left">Cancelar</button>                        
                         </div>
                         <div class="col">
                             <button type="button" class="btn btn-success float-right">Subir artículo</button>
                         </div>
+                        
                     </div>
                 </form>
                 </div>

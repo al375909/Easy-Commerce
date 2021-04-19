@@ -16,11 +16,13 @@
 }
 
 .btn-danger{
-    width: 50%;
+    width: 20%;
+    position: absolute;
+    left: 0px;
 }
 
 .btn-success{
-    width: 50%;
+    width: 20%;
     position: absolute;
     right: 0px;
 }
@@ -31,5 +33,5 @@
 }
 
 .button-row{
-    width: 101%;
+    height: ;
 }
