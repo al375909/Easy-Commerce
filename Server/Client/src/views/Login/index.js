@@ -1,9 +1,13 @@
-export default function Login(){
+import LoginForm from "./components/LoginForm";
+
+export default function Login(props){
+
+    const goHome = () =>{
+        props.history.push("/");
+    }
 
     return(
-        <div>
-            Hola caracola
-        </div>
+        <LoginForm goHome={goHome}></LoginForm>
     );
 
 }

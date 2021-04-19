@@ -17,7 +17,7 @@ export default function Header() {
             {/* Logo */}
             <div className="navbar-brand">
                 <a href="/">
-                    <img src={cesta} />
+                    <img alt='' src={cesta} />
                 </a>
             </div>
 
@@ -47,7 +47,7 @@ export default function Header() {
 
                 <div className="user-box">
                     <div className="user-pic">
-                        <img className="profile-pic" src={user} />
+                        <img alt='' className="profile-pic" src={user} />
                     </div>
                     <div className="login">
                         <p>Login</p>

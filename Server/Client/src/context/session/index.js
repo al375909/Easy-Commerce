@@ -5,4 +5,4 @@ import SessionProvider from './Provider';
 
 
  const SessionContext = createContext("session");
-export default SessionProvider;
+export default SessionContext;
