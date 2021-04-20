@@ -1,0 +1,29 @@
+.card{
+    width: 80%;
+    float: center;
+}
+
+.h2{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-content{
+    width: 90%;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-danger{
+    width: 50%;
+}
+
+.btn-success{
+    width: 50%;
+    float: right;
+}
+
+.dropbox{
+    margin-bottom: 4rem;
+}

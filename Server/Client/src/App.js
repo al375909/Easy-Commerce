@@ -1,7 +1,10 @@
 import './App.css';
 import { useEffect } from 'react';
 import TiendasProvider from './context/tiendas/Provider.js';
-import Home from './views/Home';
+
+import Routes from './routes';
+import SessionContext from './context/session';
+import SessionProvider from './context/session/Provider';
 
 
 function App() {
@@ -16,10 +19,11 @@ function App() {
 
 
   return (
+    <SessionProvider>
     <TiendasProvider>
-      <Home />
+      <Routes />
     </TiendasProvider>
-    
+    </SessionProvider>
 
   );
 }
