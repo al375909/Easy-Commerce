@@ -42,6 +42,6 @@ app.use(
 //     res.send(list);
 // });
 
-app.use("/", indexRouter);
+app.use("/api", indexRouter);
 
 module.exports = app;

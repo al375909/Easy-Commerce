@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.get('/' , controller.getCommerce);
 router.post('/signup', controller.createCommerce);
+router.get('/signin', controller.loginCommerce);
 //router.post('/', controller.createCommerce());
 
 module.exports = router;
