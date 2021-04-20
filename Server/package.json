@@ -29,9 +29,7 @@
     "morgan": "^1.9.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "pg": "^8.5.1",
-    "html5-file-selector": "^2.1.0",
-    "react-dropzone-uploader": "^2.11.0"
+    "pg": "^8.5.1"
   },
   "engines": {
     "node": "14.16.0"
