@@ -1,4 +1,5 @@
-import SingupForm from "./components/SingupForm";
+import SignupForm from "./components/SignupForm";
+
 
 export default function Singup() {
 
@@ -6,7 +7,7 @@ export default function Singup() {
     }
 
     return (
-        <SingupForm goHome={goHome}></SingupForm>
+           <SignupForm goHome={goHome}></SignupForm>
     );
 
 }

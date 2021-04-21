@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Switch, useHistory} from "react-router-dom";
 import Home from "../views/Home";
 import Login from "../views/Login";
-import Singup from "../views/Singup"
+import Signup from "../views/Signup"
 
 export default function Routes() {
     return (
@@ -14,7 +14,7 @@ export default function Routes() {
                 <Route path="/login" component={Login} exact>
                 </Route>
 
-                <Route path="/singup" component={Singup} exact>
+                <Route path="/signup" component={Signup} exact>
                 </Route>
 
             </Switch>
