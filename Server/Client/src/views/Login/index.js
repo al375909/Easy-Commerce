@@ -1,16 +1,13 @@
 import LoginForm from "./components/LoginForm";
-import Header from "../../components/Header";
 
-export default function Login(props){
+export default function Login(props) {
 
-    const goHome = () =>{
+    const goHome = () => {
         props.history.push("/");
     }
 
-    return(
-       
+    return (
         <LoginForm goHome={goHome}></LoginForm>
-        
     );
 
 }

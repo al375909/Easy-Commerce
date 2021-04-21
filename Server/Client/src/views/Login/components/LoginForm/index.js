@@ -45,17 +45,18 @@ export default function LoginForm({goHome}) {
         <div className="container">
             <form>
                 <div className="form-group">
-                    <label >Username</label>
+                    <label >Usuario</label>
                     <input className="form-control" value={userName} onChange={event=>{setUserName(event.target.value)}}  placeholder="Username" />
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div className="form-group">
-                    <label >Password</label>
+                    <label >Contraseña</label>
                     <input type="password" className="form-control" value={password} onChange={event=>{setPassword(event.target.value)}} placeholder="Password" />
                 </div>
                 
+                <p className="singup">Registrate <Link to="/singup">aquí</Link></p>
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-                
+
             </form>
         </div>
        

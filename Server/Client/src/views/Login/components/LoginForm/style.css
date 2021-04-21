@@ -19,3 +19,8 @@ html, body {
 #root {
     height: 100%;
 }
+
+.singup{
+    font-size: 0.8em;
+        color: grey;
+}
