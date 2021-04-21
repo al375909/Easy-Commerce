@@ -11,7 +11,7 @@ export default function TiendasProvider({children}) {
     //recoje la respuesta de la llamada tipo get a la api 
     // heroku url = https://easy-commerce-ei1050.herokuapp.com/
     // local url = http:://localhost:3000/
-    const data = await (await axios.get(`/tiendas`))
+    const data = await (await axios.get(`/api/tiendas`))
     //const data = await (await axios.get("https://easy-commerce-ei1050.herokuapp.com/tiendas"))
     console.log("petición hecha")
     console.log(data.data);

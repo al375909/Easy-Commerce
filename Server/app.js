@@ -25,12 +25,12 @@ app.use(express.static(path.join(__dirname, "Client/build")));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(
+/*app.use(
   session({
     resave: true,
     saveUninitialized: true,
   })
-);
+);*/
 
 // app.get('/home', (req, res) => {
 //     res.send("la de dios");
