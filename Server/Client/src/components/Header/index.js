@@ -5,10 +5,12 @@ import userpic from "./user.png"
 import "./style.css"
 import { Link } from "react-router-dom";
 import SessionContext from "../../context/session";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 export default function Header(props) {
 
     const { user, setUser } = useContext(SessionContext);
+
+    const[menuOpen,setMenutOpen] = useState(false);
 
 
 
@@ -23,7 +25,8 @@ export default function Header(props) {
 
     return (
         <>
-            <div className="left-menu">
+            <div className={`left-menu ${menuOpen ? "open" : "closed"}`} >
+                <button type="button" onClick={()=>{setMenutOpen(!menuOpen)}} >close</button>
                 <div className="links">
                     <ul>
                         <li></li>
@@ -33,7 +36,7 @@ export default function Header(props) {
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 {/* Burger menu */}
-                <button className="burguer-menu" type="button">
+                <button className="burguer-menu" onClick={()=>{setMenutOpen(!menuOpen)}} type="button">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 

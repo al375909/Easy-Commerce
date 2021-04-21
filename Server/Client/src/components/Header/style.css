@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+  }
+  
+
 .burguer-menu {
     border-radius: 20%;
     border-color: rgb(197, 197, 197);
@@ -7,11 +12,45 @@
     background-color: rgb(36, 36, 104);
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 30%;
     height: 100%;
     z-index: 99;
+   
 }
+
+.left-menu.closed{
+    
+    animation-name: close;
+    animation-duration: 1s;
+}
+
+.left-menu.open{
+    left: 0;
+    animation-name: open;
+    animation-duration: 1s;
+}
+
+@keyframes open {
+    0% {
+      left: -100%
+    }
+    100% {
+        
+    }
+}
+
+@keyframes close{
+    0% {
+        left: 0;
+      }
+      100% {
+
+      }
+        
+      
+}
+
 
 .navbar-brand img {
     height: 100px;
