@@ -10,12 +10,13 @@ html, body {
 
 .left-menu {
     background-color: rgb(36, 36, 104);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -100%;
     width: 30%;
     height: 100%;
     z-index: 99;
+
    
 }
 
