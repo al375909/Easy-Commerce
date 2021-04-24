@@ -8,7 +8,6 @@ export default function SessionProvider({children}) {
     const [user, setUser] = useState(localStorage.getItem('user') || "");
     const [isCommerce, setIsCommerce] = useState(false);
 
-
     // TODO el user se actualizara desde el login
 
     const login = () => { /*TODO comunicacion con el servidr com
@@ -18,13 +17,11 @@ export default function SessionProvider({children}) {
     */
     }
 
-
     return (
         <SessionContext.Provider value={
             {user, setUser}
         }>
             {children} </SessionContext.Provider>
     );
-
 
 }
