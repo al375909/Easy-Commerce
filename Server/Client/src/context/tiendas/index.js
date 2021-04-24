@@ -1,7 +1,6 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createContext } from "react";
+import {createContext} from "react";
 
 
- const TiendasContext= createContext("tiendas");
+const TiendasContext = createContext("tiendas");
 export default TiendasContext;
