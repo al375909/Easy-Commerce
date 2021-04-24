@@ -25,16 +25,16 @@ export default function SignupForm({goHome}) {
         // La contraseña mejor no dejarla por ahi la borramos de local mejor
         setPassword("")
 
-         // actualizamos el storage para persistencia ante refresh de la pagin
-         localStorage.clear()
-         await localStorage.setItem('user', user)
-         goHome()
-     }
+        // actualizamos el storage para persistencia ante refresh de la pagin
+        localStorage.clear()
+        await localStorage.setItem('user', user)
+        goHome()
+    }
 
 
     return (
         <div className="container">
-            kjh
+            <p>HOLAA</p>
         </div>
     );
 

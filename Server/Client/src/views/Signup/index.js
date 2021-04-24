@@ -1,13 +1,13 @@
 import SignupForm from "./components/SignupForm";
 
+export default function Singup(props) {
 
-export default function Singup() {
-
-    const goHome = () => { // props.history.push("/");
+    const goHome = () => {
+        props.history.push("/");
     }
 
     return (
-           <SignupForm goHome={goHome}></SignupForm>
+        <SignupForm goHome={goHome}></SignupForm>
     );
 
 }
