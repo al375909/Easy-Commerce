@@ -36,6 +36,7 @@ passport.use('local.signin', new LocalStrategy({
     const commerce = model.getCommerce(username)[0];
     const validPassword = await passwordHandler.matchPassword(password, commerce.password);
     if(validPassword){
+        console.log("Contraseña válida");
         // null como error, ya que ha sido correcto. El comercio porque es el resultado que he
         // obtenido para serializar y deserializar
         done(null, commerce);
