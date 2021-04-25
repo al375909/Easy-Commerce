@@ -49,7 +49,8 @@ const getProducts = async (commerceName) => {
 
 const getCommerce = async(commerceName) => {
     const client = await pool.connect();
-    const res = await pool.query('SELECT * from comercio where username = ?' [commerceName]);
+    const res = await pool.query('SELECT * from comercio where username = ?' [commerceName])
+                .catch(err => console.log('Error al buscar un comercio concreto ', err.stack));
     await client.end();
     return res.rows();
 }
