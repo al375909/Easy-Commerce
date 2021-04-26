@@ -71,8 +71,25 @@ export default function SignupForm({ goHome }) {
 
         if (isCommerce) {
             const userInfo = {
+                firstName:firstName,
+                lastName:lastName,
                 username: userName,
                 password: password,
+                cif:cif,
+                commerceName:commerceName,
+                commerceType:commerceType,
+                description:description,
+            }
+            console.log(userInfo)
+        }else{
+            const userInfo = {
+                firstName:firstName,
+                lastName:lastName,
+                username: userName,
+                password: password,
+                nif:nif,
+                direction: direction,
+            
             }
             console.log(userInfo)
         }
@@ -168,8 +185,8 @@ export default function SignupForm({ goHome }) {
                         }
                         
                         placeholder="Password" />
-                        
                 </div>
+                {/**popup cuando la ocntraseña es diferente a su comfirmación  */}
                 <BootstrapTooltip title="La contraseña no coincide" placement="bottom-start" open={ password!==confirmationPassword}>
                     <div className="popup"></div>
                 </BootstrapTooltip>
