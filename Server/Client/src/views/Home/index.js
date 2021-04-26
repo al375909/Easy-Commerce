@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 import AddProductView from "../Products/AddProductView";
 import SessionContext from "../../context/session";
 export default function Home() {
-
+    
     const {getDato, datos} = useContext(TiendasContext);
     const {user, setUser} = useContext(SessionContext);
 

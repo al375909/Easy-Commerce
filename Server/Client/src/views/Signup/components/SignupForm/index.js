@@ -1,5 +1,5 @@
 import { useState, useContext, useRef } from "react";
-import './style.css'
+import '../SignupForm/style.css'
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Tooltip from '@material-ui/core/Tooltip';
 import SessionContext from "../../../../context/session";
