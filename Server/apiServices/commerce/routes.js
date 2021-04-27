@@ -9,8 +9,9 @@ const router = express.Router();
 router.get('/' , controller.getCommerce);
 router.post('/signup', controller.createCommerce);
 router.get('/signin', controller.loginCommerce);
+router.get('/products', controller.getProducts);
+router.post('/products', controller.addProduct);
 
-router.post('/products', controller.getProducts);
-//router.post('/', controller.createCommerce());
+//router.post('/:id', controller.createCommerce());
 
 module.exports = router;

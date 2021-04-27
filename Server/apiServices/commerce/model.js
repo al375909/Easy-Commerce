@@ -16,5 +16,11 @@ module.exports = {
     if(res > 0){
       return res;
     }
+  },
+  async addProduct(commerce, product){
+    // comprobamos que exista el comercio
+
+    
+    const res = commerceDao.addProduct(commerce, product);
   }
 };
