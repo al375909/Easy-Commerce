@@ -1,5 +1,5 @@
 
-export default function ProductCard({imagen,nombreProducto}){
+export default function ProductCard({imagen,nombre}){
 
 
     return(
@@ -10,7 +10,7 @@ export default function ProductCard({imagen,nombreProducto}){
         <div className="card-body">
             <div className="card-info">
                 <h5 className="card-title">
-                    {nombreProducto}</h5>
+                    {nombre}</h5>
                 <p className="card-text">cositas del producto B)</p>
             </div>
             <a href="#" className="btn btn-primary">Add</a>

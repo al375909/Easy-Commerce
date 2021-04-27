@@ -3,6 +3,7 @@ import Home from "../views/Home";
 import Login from "../views/Login";
 import Signup from "../views/Signup"
 import ProductList from "../views/Products/ProductListView";
+import ProductsProvider from "../context/products/Provider";
 
 export default function Routes() {
 
@@ -21,11 +22,10 @@ export default function Routes() {
                 <Route path="/signup" component={Signup} exact>
                 </Route>
 
-                
-                <Route path="/:id/products"  render={({ match }) => <ProductList match={match} />} >
-                    
-                   
+                <ProductsProvider>
+                <Route path="/:id/products"  render={({ match }) => <ProductList match={match} />} >  
                 </Route>
+                </ProductsProvider>
 
             </Switch>
         </Router>

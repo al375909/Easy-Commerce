@@ -3,7 +3,7 @@ import ProductCard from "../ProductCard";
 
 export default function Products({products}){
 
-
+    
 
     return(
         <div className="m-4">
@@ -16,7 +16,8 @@ export default function Products({products}){
             )}
 
         </div>
-        
+                 
+           
     </div>
     );
 

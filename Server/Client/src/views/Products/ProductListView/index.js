@@ -1,5 +1,5 @@
 import Header from "../../../components/Header"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Products from "./components/Products";
 import data from './data.json'
 import {
@@ -9,21 +9,31 @@ import {
     Link,
     useParams
   } from "react-router-dom";
+import TiendasContext from "../../../context/tiendas";
+import ProductsContext from "../../../context/products";
 
 
-export default function ProductList({match,getProducts,products}){
+export default function ProductList({match}){
+
+    const {products,getCommerceProducts}=useContext(ProductsContext)
     let {id} = match.params;
-    const commerceId=id;
-    products=data;
     
-    useEffect(()=>{
-      // getProducts(commerceId)
+    const username=id
+   
+    
+    
+    useEffect(async ()=>{
+     
+      await getCommerceProducts({username})
+    
+      
 
-    });
+    },[]);
 
     return(
         <div>
             <Header></Header>
+            
             <Products products={products}></Products>
 
         </div>
