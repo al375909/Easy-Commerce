@@ -44,7 +44,7 @@ module.exports = {
       cantidad: req.body.cantidad,
       imagen: req.body.imagen,
     };
-
+    console.log(product);
     
 
     // hacemos pequeñas comprobaciones
