@@ -5,7 +5,7 @@ export default function CommerceCard({nombretienda, imagen}) {
 
 
     return (
-        <div className="card">
+        <div className="commerce-card">
             <img className="card-img-top"
                 src={imagen}
                 alt="Card image cap"/>

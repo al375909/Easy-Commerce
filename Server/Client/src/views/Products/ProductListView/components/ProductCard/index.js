@@ -3,7 +3,7 @@ export default function ProductCard({imagen,nombreProducto}){
 
 
     return(
-        <div className="card">
+        <div className="commerce-card">
         <img className="card-img-top"
             src={imagen}
             alt="Card image cap"/>
@@ -13,7 +13,7 @@ export default function ProductCard({imagen,nombreProducto}){
                     {nombreProducto}</h5>
                 <p className="card-text">cositas del producto B)</p>
             </div>
-            <a href="#" className="btn btn-primary">Go to Commerce</a>
+            <a href="#" className="btn btn-primary">Add</a>
         </div>
     </div>
     );
