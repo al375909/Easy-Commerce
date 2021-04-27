@@ -28,5 +28,6 @@ module.exports = {
     // FALTA COMPROBAR QUE ESTO ES ASÍ
     // (creo que no)
     const list = await commerceModel.getProducts(req.body.username);
+    res.send(list)
   }
 };

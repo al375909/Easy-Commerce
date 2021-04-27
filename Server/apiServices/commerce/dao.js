@@ -42,9 +42,9 @@ const createCommerce = async (commerce) => {
 
 const getProducts = async (commerceName) => {
     const client = await pool.connect();
-    const res = await pool.query('SELECT * from PRODUCTO JOIN catalogo as c USING(codprod) WHERE c.username = ?;', [commerceName]);
+    const res = await pool.query('SELECT * from PRODUCTO JOIN catalogo as c USING(codprod) WHERE c.username = $1;', [commerceName]);
     await client.end();
-    return res.rows();
+    return res.rows;
 }
 
 const getCommerce = async(commerceName) => {
