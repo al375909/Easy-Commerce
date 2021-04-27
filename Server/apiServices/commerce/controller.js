@@ -33,6 +33,7 @@ module.exports = {
     res.send(list)
   },
   addProduct: async function(req, res) {
+    console.log(req.body);
     commerce = req.body.commerceName;
     idProduct = Math.random();
     product = {
