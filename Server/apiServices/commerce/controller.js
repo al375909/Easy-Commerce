@@ -36,7 +36,7 @@ module.exports = {
     commerce = req.body.commerceName;
     idProduct = Math.random();
     product = {
-      id: idProduct,
+      codprod: idProduct,
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
       precio: req.body.precio, 
