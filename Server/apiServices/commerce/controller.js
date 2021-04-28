@@ -49,11 +49,11 @@ module.exports = {
     
 
     // hacemos pequeñas comprobaciones
-    if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
+    /*if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
       res.sendStatus(400);
-    }else{
+    }else{*/
         const validate = await commerceModel.addProduct(commerce, product);
         res.sendStatus(201);
-      }
+    //  }
     }
 };
