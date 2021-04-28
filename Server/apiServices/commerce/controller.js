@@ -52,7 +52,7 @@ module.exports = {
     /*if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
       res.sendStatus(400);
     }else{*/
-        const validate = await commerceModel.addProduct(commerce, product);
+        const validate = await commerceModel.addProduct(product);
         res.sendStatus(201);
     //  }
     }
