@@ -28,13 +28,36 @@ const getProducts = async (commerceName) => {
     return res.rows;
 }
 
-const addProduct = async (product) => {
+
+// TOODOOOOO: URGE
+const getProduct = async (product, commerceName) => {
     const client = await pool.connect();
-    const res = await pool.query('INSERT INTO producto (codpro, nombre, descripcion, precio, descuento, cantidad, imagen) VALUES($1, $2, $3, $4, $5, $6, $7);'
-                                    [product.codprod, product.nombre, product.descripcion, product.precio, product.descuento, product.cantidad, product.imagen]);
-    console.log("ADD PRODUCT: ", res.rows);
+    const res = await pool.query('SELECT * from PRODUCTO as p JOIN catalogo as c USING(codprod) WHERE c.username = $1 and \
+                                p.nombre = $2 and p.descripcion = $3;', [product.nombre, product.descripcion, commerceName])
+                                .catch(err => console.log('Error al consultar un producto ', err.stack));
+    
     client.release();
     return res.rows;
+}
+
+// TODOOO URGEEE
+const addProduct = async (product) => {
+    const client = await pool.connect();
+    await pool.query('INSERT INTO producto (nombre, descripcion, precio, descuento, cantidad, imagen) VALUES($1, $2, $3, $4, $5, $6);',
+                                    [product.nombre, product.descripcion, product.precio, product.descuento, product.cantidad, product.imagen])
+                                    .catch(err => console.log("Error al insertar un producto ", err.stack));
+    client.release();
+    return;
+}
+
+
+// TODOOO URGEEEE
+const addProductToCatalog = async (commerce, productId) => {
+    const client = await pool.connect();
+    await pool.query('INSERT INTO catalogo (codprod, username) VALUES($1, $2);', [commerce, productId])
+                    .catch(err => console.log('Error al insertar un producto en el catalogo ', err.stack)); // insertamos sobre la tabla de catalogo
+    client.release();
+    // return falta ver qué devolver
 }
 
 const getCommerce = async(commerceName) => {
@@ -49,3 +72,4 @@ module.exports.listCommerce = listCommerce;
 module.exports.getProducts = getProducts;
 module.exports.getCommerce = getCommerce;
 module.exports.addProduct = addProduct;
+module.exports.addProductToCatalog = addProductToCatalog;

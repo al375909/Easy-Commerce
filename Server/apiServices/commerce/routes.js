@@ -12,6 +12,7 @@ router.get('/signin', controller.loginCommerce);
 router.get('/products', controller.getProducts);
 router.post('/products', controller.addProduct);
 
+
 //router.post('/:id', controller.createCommerce());
 
 module.exports = router;

@@ -19,10 +19,16 @@ module.exports = {
   // LOGIN DE COMERCIOS
   loginCommerce: async function(req, res){
     console.log("Logeando como comercio");
-    passport.authenticate('local.signin', {
+
+    console.log(req.query);
+    
+
+
+
+    /*passport.authenticate('local.signin', {
       successMessage: res.sendStatus(200), // Usuario logeado
       failureMessage: res.sendStatus(400), // Usuario no identificado
-    });
+    });*/
   },
   getProducts: async function(req, res) {
     // FALTA COMPROBAR QUE ESTO ES ASÍ
@@ -35,9 +41,7 @@ module.exports = {
   addProduct: async function(req, res) {
     console.log(req);
     commerce = req.body.commerceName;
-    idProduct = Math.random();
     product = {
-      codprod: idProduct,
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
       precio: req.body.precio, 

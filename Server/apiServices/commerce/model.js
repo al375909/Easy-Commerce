@@ -17,10 +17,15 @@ module.exports = {
       return res;
     }
   },
+  async loginCommerce(username, password){
+    const res = commerceDao.loginCommerce(username, password);
+  },
+  //  TODOO: TERMINARLO BIEN Y HACER EL LOGIN (COMO MINIMO)
   async addProduct(commerce, product){
     // comprobamos que exista el comercio
 
-    
-    const res = commerceDao.addProduct(commerce, product);
+    if(commerceDao.getCommerce(commerce)){ // si existe el comercio al que asignar el producto
+      const product = commerceDao.addProduct(commerce, product);
+    }
   }
 };
