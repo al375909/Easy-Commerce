@@ -35,6 +35,7 @@ const getProduct = async (product, commerceName) => {
     const res = await pool.query('SELECT * from PRODUCTO as p JOIN catalogo as c USING(codprod) WHERE c.username = $1 and \
                                 p.nombre = $2 and p.descripcion = $3;', [product.nombre, product.descripcion, commerceName])
                                 .catch(err => console.log('Error al consultar un producto ', err.stack));
+                                
     
     client.release();
     return res.rows;

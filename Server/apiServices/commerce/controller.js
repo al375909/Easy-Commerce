@@ -11,10 +11,11 @@ module.exports = {
   // REGISTRO DE COMERCIOS
   createCommerce: async function(req, res){
     console.log("Creando comercio");
-    passport.authenticate('local.signup', {
+    /*passport.authenticate('local.signup', {
       successMessage: res.sendStatus(201), // Usuario creado correctamente
       failureMessage: res.sendStatus(400), // Usuario existente 
-    });
+    });*/
+    
   },
   // LOGIN DE COMERCIOS
   loginCommerce: async function(req, res){
