@@ -10,13 +10,13 @@ module.exports = {
         // En caso de que exista ese cliente, comprobamos las credenciales
         if(client.length === 1){
             console.log(client);
-            const authentication = await passwordHandler.matchPassword(req.query.password, client.passwd);
+            //const authentication = await passwordHandler.matchPassword(req.query.password, client.passwd);
             // Si son correcto los credenciales. Se considerla logueado
-            if(authentication){
+            if(commerce[0].passwd === req.query.password){
                 resultClient = {
                     tipo: "client",
-                    username: client.username,
-                    direccion: client.direccion,
+                    username: client[0].username,
+                    direccion: client[0].direccion,
                 }
                 res.sendStatus(200);
                 res.send(resultClient);
@@ -29,7 +29,6 @@ module.exports = {
                 console.log(commerce[0].passwd);
                 //const authentication = await passwordHandler.matchPassword(req.query.password, commerce[0].passwd);
                 if(commerce[0].passwd === req.query.password){
-                    console.log("yeee");
                     resultCommerce = {
                         tipo: "commerce",
                         username: commerce[0].username,
@@ -61,6 +60,7 @@ module.exports = {
                 }*/
             }
         }
+        return;
         
     },
     
