@@ -3,5 +3,5 @@ const controller = require('./controller');
 const router = express.Router();
 
 
-router.get('/commerce', controller.signupCommerce);
-router.get('/client', controller.signupClient);
+router.post('/commerce', controller.signupCommerce);
+router.post('/client', controller.signupClient);

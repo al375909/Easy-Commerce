@@ -4,9 +4,9 @@ const passport = require("passport");
 module.exports = {
   getCommerce: async function(req, res) {
     console.log("Listando comercios");
-    const q = await commerceModel.listCommerce();
-    console.log(q);
-    res.send(q);
+    const commerce = await commerceModel.listCommerce();
+    console.log(commerce);
+    res.send(commerce);
   },
   // REGISTRO DE COMERCIOS
   createCommerce: async function(req, res){
