@@ -1,27 +1,31 @@
 import TiendasContext from "../../context/tiendas"
-import React, { useEffect, useContext } from 'react';
-import CommerceCard from "./components/CommerceCard"
+import React, {useEffect, useContext} from 'react';
+
 import Commerces from "./components/Commerces";
 import Header from "../../components/Header";
 import AddProductView from "../Products/AddProductView";
-export default function Home(){
+import SessionContext from "../../context/session";
+export default function Home() {
+    
+    const {getDato, datos} = useContext(TiendasContext);
+    const {user, setUser} = useContext(SessionContext);
 
-    const { getDato, datos } = useContext(TiendasContext);
 
+    useEffect(() => { // al refrescar la pagina no se perdera la informacion del provider
+        console.log("el usuario " + user);
+        localStorage.setItem('user', user)
 
-    useEffect(() => {
-  
-      // Usa la función gteDato donde se setea la varibale datos al renderizar el componente
-      getDato()
-  
-      // es necesario injectar dependencias en useEffect para que pueda usar le metodo del hook que usamos
+        // Usa la función gteDato donde se setea la varibale datos al renderizar el componente
+        getDato()
+
+        // es necesario injectar dependencias en useEffect para que pueda usar le metodo del hook que usamos
     }, []);
 
-    return(
+    return (
         <div>
-        <Header />
-        <Commerces datos={datos}/>
-        <AddProductView/>
+            <Header/>
+            <Commerces datos={datos}/>
+            <AddProductView/>
         </div>
 
     );

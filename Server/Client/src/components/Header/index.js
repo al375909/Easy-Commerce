@@ -1,49 +1,115 @@
 import cesta from "./cesta.png"
+import cart from "./cesta1.png"
+import userpic from "./user.png"
+
 import "./style.css"
-export default function Header() {
+import {Link} from "react-router-dom";
+import SessionContext from "../../context/session";
+import {useContext, useState} from "react";
+
+export default function Header(props) {
+    const {user, setUser} = useContext(SessionContext);
+
+    const [menuOpen, setMenutOpen] = useState(false);
+
+
+    const logout = () => {
+
+        setUser("");
+
+
+    }
 
 
     return (
+        <>
+            <div className={
+                `left-menu ${
+                    menuOpen ? "open" : "closed"
+                }`
+            }>
+                <button type="button"
+                    onClick={
+                        () => {
+                            setMenutOpen(!menuOpen)
+                        }
+                }>close</button>
+                <div className="links">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                {/* Burger menu */}
+                <button className="burguer-menu"
+                    onClick={
+                        () => {
+                            setMenutOpen(!menuOpen)
+                        }
+                    }
+                    type="button">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
 
-            <a className="navbar-brand" href="#">
-                <img src={cesta} />
-            </a>
+                {/* Logo */}
+                <div className="navbar-brand">
+                    <a href="/">
+                        <img alt=''
+                            src={cesta}/>
+                    </a>
+                </div>
 
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+                {/* Full width menu */}
+                <div className="navbar-links collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="#">Home
+                                <span className="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="#">Mis pedidos</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#">Something else here</a>
+                {/* Cart + User Pic */}
+                <div className="navbar-user">
+
+
+                    {
+                    user != "" ? <div className="user-box">
+
+                        <div className="cart-box">
+                            <div className="cart">
+                                <img src={cart}/>
+                            </div>
+
+                            <div className="cart-products">
+                                <p>4</p>
+                            </div>
                         </div>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
-                    </li>
-                </ul>
 
-            </div>
-            <div>
-                
-            </div>
-        </nav>
+                        <div className="user-pic">
+                            <img alt='' className="profile-pic"
+                                src={userpic}/>
+                        </div>
+                        <div className="logout">
+                            <Link to="/">
+                                <button onClick={logout}>Logout</button>
+                            </Link>
+                        </div>
+                    </div> : <div className="login">
+                        <Link to="/login">
+                            <button>Login</button>
+                        </Link>
+                    </div>
+                } </div>
+            </nav>
+        </>
+
     );
 
 }

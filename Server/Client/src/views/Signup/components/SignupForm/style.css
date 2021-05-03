@@ -1,0 +1,57 @@
+.registration-form-card{
+    border: solid 3px gey;
+}
+
+.full-name{
+    display: flex;
+    flex-direction: row;
+}
+
+.radio-group{
+    margin-bottom: 5px;
+    
+}
+
+.radio-group input{
+    margin: 5px;
+}
+
+#name-input{
+    margin-right: 10px;
+}
+
+.market-info{
+    height: 100%;
+    
+ 
+}
+
+.client-info{
+    height: 100%;
+    
+    
+}
+.expanded{
+
+    animation-name:  expand ;
+    animation-duration: 600ms;
+}
+
+.popup{
+    background-color: beige;
+}
+
+
+
+@keyframes expand{
+    
+        0% { 
+            opacity: 0;
+            clip-path: polygon(0 0, 100% 0%, 100% 0%, 0 0%); 
+        }
+        100%{ clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);}
+        
+    
+}
+
+

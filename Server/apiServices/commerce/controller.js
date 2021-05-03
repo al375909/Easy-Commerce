@@ -1,21 +1,34 @@
 const commerceModel = require("./model");
+const passport = require("passport");
 
 module.exports = {
   getCommerce: async function(req, res) {
-    console.log("que diuen");
+    console.log("Listando comercios");
     const q = await commerceModel.listCommerce();
     console.log(q);
     res.send(q);
   },
+  // REGISTRO DE COMERCIOS
   createCommerce: async function(req, res){
-    console.log("que diuen");
-    const q = await commerceModel.createCommerce({
-        // Aquí le pasamos atributos básicos para la creación de un comercio
-        //username: req.body.username,
-        //password: req.body.password,
-        //email: req.body.email,
+    console.log("Creando comercio");
+    passport.authenticate('local.signup', {
+      successMessage: res.sendStatus(201), // Usuario creado correctamente
+      failureMessage: res.sendStatus(400), // Usuario existente 
     });
-    console.log(q);
-    res.send(q);
   },
+  // LOGIN DE COMERCIOS
+  loginCommerce: async function(req, res){
+    console.log("Logeando como comercio");
+    passport.authenticate('local.signin', {
+      successMessage: res.sendStatus(200), // Usuario logeado
+      failureMessage: res.sendStatus(400), // Usuario no identificado
+    });
+  },
+  getProducts: async function(req, res) {
+    // FALTA COMPROBAR QUE ESTO ES ASÍ
+    // (creo que no)
+    console.log(req.body)
+    const list = await commerceModel.getProducts(req.body.username);
+    res.send(list)
+  }
 };

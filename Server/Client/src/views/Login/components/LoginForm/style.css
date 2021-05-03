@@ -1,0 +1,26 @@
+.container {
+    
+    height: 100%;
+    padding: 10px;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    position: relative;
+}
+
+html, body {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+.singup{
+    font-size: 0.8em;
+        color: grey;
+}

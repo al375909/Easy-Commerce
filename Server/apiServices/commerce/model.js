@@ -7,5 +7,14 @@ module.exports = {
   // Recibe un objeto JS de comercio
   async createCommerce (commerce) {
     return commerceDao.createCommerce(commerce);
+  }, 
+  async getProducts(commerceName){
+    return commerceDao.getProducts(commerceName);
+  },
+  async getCommerce(commerceName){
+    const res = commerceDao.getCommerce(commerceName);
+    if(res > 0){
+      return res;
+    }
   }
 };

@@ -12,10 +12,11 @@ export default function Commerces({ datos }) {
                     <CommerceCard key={item.id} {...item}>
 
                     </CommerceCard>
+                    
                 )}
 
             </div>
-
+            
         </div>
     );
 
