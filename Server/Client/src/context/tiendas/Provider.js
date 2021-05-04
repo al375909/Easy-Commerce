@@ -14,7 +14,7 @@ export default function TiendasProvider({ children }) {
         const data = await (await axios.get(`/api/tiendas`))
         //const data = await (await axios.get("https://easy-commerce-ei1050.herokuapp.com/tiendas"))
         console.log("petición hecha")
-        console.log(data.data);
+       // console.log(data.data);
 
         // asignamos a nuestra variable de entorno por el hook la informacion recogida por la llamada a la api
         await setDatos(data.data)

@@ -5,24 +5,26 @@ import SessionContext from "./index";
 
 export default function SessionProvider({children}) {
 
-    const [user, setUser] = useState(localStorage.getItem('user') || "");
+    const [user, setUser] = useState( JSON.parse( localStorage.getItem('user')) || null);
     const [isCommerce, setIsCommerce] = useState(false);
 
     // TODO el user se actualizara desde el login
 
-    const login = () => { /*TODO comunicacion con el servidr com
-            si estoy y la conraseña es correcta setUser 
-                y setiscommerce
-            sino sigo null
-    */
-
-
+    const login = async (userObject) => { 
+        
+        console.log("entra en axios login")
+        const data = await axios.post(`/api/login`,userObject)
+        console.log(data.data)
+        if (data.status!=401){
+            setUser(data.data);
+            await localStorage.setItem('user', JSON.stringify(data.data));
+        }
 
     }
 
     return (
         <SessionContext.Provider value={
-            {user, setUser}
+            {user, setUser,login}
         }>
             {children} </SessionContext.Provider>
     );

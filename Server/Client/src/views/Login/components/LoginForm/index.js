@@ -18,20 +18,22 @@ export default function LoginForm({goHome}) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
-    const {user, setUser} = useContext(SessionContext);
+    const {user, setUser,login} = useContext(SessionContext);
 
 
     const handleSubmit = async (event) => {
 
         event.preventDefault()
 
-        setUser(userName)
         // La contraseña mejor no dejarla por ahi la borramos de local mejor
         setPassword("")
 
         // actualizamos el storage para persistencia ante refresh de la pagina
         localStorage.clear()
-        await localStorage.setItem('user', user)
+
+        const formUser = {password:password,username:userName}
+        await login(formUser);
+        
         goHome()
 
 

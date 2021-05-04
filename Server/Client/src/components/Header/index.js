@@ -80,7 +80,7 @@ export default function Header(props) {
 
 
                     {
-                    user != "" ? <div className="user-box">
+                      user ? <div className="user-box">
 
                         <div className="cart-box">
                             <div className="cart">
