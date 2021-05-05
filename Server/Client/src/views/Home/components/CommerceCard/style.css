@@ -18,8 +18,16 @@
     bottom: 0;
 }
 
+.go-commerce-btn{
+    width: 90%;
+    margin: 15px;
+}
+
 .card-body {
     padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
 }
 
 .card-info {

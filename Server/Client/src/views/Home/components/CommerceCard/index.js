@@ -13,10 +13,10 @@ export default function CommerceCard({username,nombretienda, imagen}) {
                 <div className="card-info">
                     <h5 className="card-title">
                         {nombretienda}</h5>
-                    <p className="card-text">Molaria que las tiendas tubieran una descripcion</p>
+                    <p className="card-text">Molaria que las tiendas tuvieran una descripcion</p>
                 </div>
                 <Link to={`${username}/products`}>
-                    <a href="#" className="btn btn-primary">Go to Commerce</a>
+                    <a href="#" className="btn btn-primary go-commerce-btn">Go to Commerce</a>
                 </Link>
             </div>
         </div>
