@@ -6,14 +6,14 @@ const passwordHandler = require('../../middleware/passwordHandler');
 module.exports = {
     async login(req, res){
         // Recogemos el cliente
-        console.log(req.body);
-        const client = await loginDao.getClientUser(req.body.username);
+        console.log(req.query);
+        const client = await loginDao.getClientUser(req.query.username);
         // En caso de que exista ese cliente, comprobamos las credenciales
         if(client.length === 1){
             console.log(client);
             //const authentication = await passwordHandler.matchPassword(req.query.password, client.passwd);
             // Si son correcto los credenciales. Se considerla logueado
-            if(commerce[0].passwd === req.body.password){
+            if(commerce[0].passwd === req.query.password){
                 resultClient = {
                     tipo: "client",
                     username: client[0].username,
@@ -25,13 +25,13 @@ module.exports = {
             }
         }else{
             // Recogemos un comercio
-            const commerce = await loginDao.getCommerceUser(req.body.username);
+            const commerce = await loginDao.getCommerceUser(req.query.username);
             // En caso de que exista ese comercio, comprobamos las credenciales
             if(commerce.length === 1) {
-                console.log(req.body.password);
+                console.log(req.query.password);
                 console.log(commerce[0].passwd);
                 //const authentication = await passwordHandler.matchPassword(req.query.password, commerce[0].passwd);
-                if(commerce[0].passwd===req.body.password){
+                if(commerce[0].passwd===req.query.password){
                     const resultCommerce = {
                         tipo: "commerce",
                         username: commerce[0].username,
@@ -65,7 +65,6 @@ module.exports = {
             }
         }
         //no encuentra nada
-        console.log("äqui va el no auth crack");
         res.sendStatus(401);
         return;
         
