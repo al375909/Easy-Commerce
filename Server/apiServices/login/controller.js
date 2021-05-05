@@ -7,19 +7,21 @@ module.exports = {
     async login(req, res){
         // Recogemos el cliente
         const client = await loginDao.getClientUser(req.query.username);
+        console.log("Cliente --> ", req.query.username);
         // En caso de que exista ese cliente, comprobamos las credenciales
         if(client.length === 1){
             console.log(client);
             //const authentication = await passwordHandler.matchPassword(req.query.password, client.passwd);
             // Si son correcto los credenciales. Se considerla logueado
-            if(commerce[0].passwd === req.query.password){
+            if(client[0].passwd === req.query.passwd){
                 resultClient = {
                     tipo: "client",
                     username: client[0].username,
                     direccion: client[0].direccion,
                 }
-                res.sendStatus(200);
                 res.send(resultClient);
+            }else{
+                res.send("WRONG_PASSWORD");
             }
         }else{
             // Recogemos un comercio
@@ -28,7 +30,7 @@ module.exports = {
             if(commerce.length === 1) {
                 console.log(commerce[0].passwd);
                 //const authentication = await passwordHandler.matchPassword(req.query.password, commerce[0].passwd);
-                if(commerce[0].passwd === req.query.password){
+                if(commerce[0].passwd === req.query.passwd){
                     resultCommerce = {
                         tipo: "commerce",
                         username: commerce[0].username,
@@ -40,6 +42,8 @@ module.exports = {
                     }
                     res.json(resultCommerce);
                     //res.sendStatus(200);
+                }else{
+                    res.send("WRONG_PASSWORD");
                 }
                 /*
                 console.log(authentication);
@@ -60,6 +64,7 @@ module.exports = {
                 }*/
             }
         }
+        res.send("USER_NOT_EXISTS");
         return;
         
     },
