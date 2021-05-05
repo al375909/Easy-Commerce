@@ -16,7 +16,7 @@ export default function Home() {
         const name= user? user.username: "no hay";
         console.log("el usuario " + name);
         
-
+        
         // Usa la función gteDato donde se setea la varibale datos al renderizar el componente
         getDato()
 

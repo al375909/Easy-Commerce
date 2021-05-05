@@ -11,7 +11,7 @@ export default function ProductsProvider({children}) {
     const getCommerceProducts = async (commerce) => {
 
 
-        const data = await axios.post(`/api/tiendas/products`, commerce)
+        const data = await axios.get(`/api/tiendas/${commerce.username}/products`);
 
         console.log(data.data)
         // asignamos a nuestra variable de entorno por el hook la informacion recogida por la llamada a la api

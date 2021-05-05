@@ -35,8 +35,8 @@ module.exports = {
     // FALTA COMPROBAR QUE ESTO ES ASÍ
     // (creo que no)
     console.log("Get Products")
-    console.log(req.body)
-    const list = await commerceModel.getProducts(req.body.username);
+    console.log(req.params)
+    const list = await commerceModel.getProducts(req.params.id);
     res.send(list)
   },
   addProduct: async function(req, res) {
