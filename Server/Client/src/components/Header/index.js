@@ -12,12 +12,10 @@ export default function Header(props) {
 
     const [menuOpen, setMenutOpen] = useState(false);
 
+    const [productsOpen, setProductsOpen] = useState(false);
 
     const logout = () => {
-
         setUser("");
-
-
     }
 
 
@@ -73,16 +71,33 @@ export default function Header(props) {
             </div>
 
             {/* Cart + User Pic */}
-            <div className="navbar-user"> {
-                user ? <div className="user-box">
+            <div className="navbar-user">
+                {user ? <div className="user-box">
 
-                    <div className="cart-box">
+                    <div className="cart-box"
+                        onClick={
+                            () => {
+
+                                setProductsOpen(!productsOpen)
+                            }
+                        }>
                         <div className="cart">
                             <img src={cart} />
                         </div>
 
                         <div className="cart-products">
                             <p>{userProducts.size}</p>
+                        </div>
+
+                        <div className={
+                            `cart-preview ${productsOpen ? "active" : ""}`}
+                        >
+                            <div className="products">
+
+                            </div>
+                            <div className="checkout">
+                                <button className="btn btn-primary">Ir al carrito</button>
+                            </div>
                         </div>
                     </div>
 
@@ -95,12 +110,15 @@ export default function Header(props) {
                             <button onClick={logout}>Logout</button>
                         </Link>
                     </div>
+
+
+
                 </div> : <div className="login">
                     <Link to="/login">
                         <button>Login</button>
                     </Link>
                 </div>
-            } </div>
+                } </div>
         </nav>
     </>);
 
