@@ -104,8 +104,8 @@ html, body {
     z-index: 2;
     display: block;
     position: absolute;
-    top: 48px;
-    right: 0;
+    top: 103px;
+    right: 30px;
     width: 380px;
     height: 420px;
     box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);

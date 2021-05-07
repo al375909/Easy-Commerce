@@ -75,7 +75,7 @@ export default function Header(props) {
                 {user ? <div className="user-box">
 
                     <div className="cart-box"
-                        onClick={
+                        onmouseover={
                             () => {
 
                                 setProductsOpen(!productsOpen)
@@ -89,15 +89,15 @@ export default function Header(props) {
                             <p>{userProducts.size}</p>
                         </div>
 
-                        <div className={
-                            `cart-preview ${productsOpen ? "active" : ""}`}
-                        >
-                            <div className="products">
+                    </div>
+                    <div className={
+                        `cart-preview ${productsOpen ? "active" : ""}`}
+                    >
+                        <div className="products">
 
-                            </div>
-                            <div className="checkout">
-                                <button className="btn btn-primary">Ir al carrito</button>
-                            </div>
+                        </div>
+                        <div className="checkout">
+                            <button className="btn btn-primary">Ir al carrito</button>
                         </div>
                     </div>
 
