@@ -1,18 +1,12 @@
 import SessionContext from "../../../../../context/session";
-import SessionProvider from "../../../../../context/session/Provider";
 import { useContext, useState } from "react";
 
 export default function ProductCard({ imagen, nombre, codprod }) {
 
-    const { userProducts, setUserProducts } = useContext(SessionContext);
+    const { userProducts, addProduct } = useContext(SessionContext);
 
     const handleOnClick = () => {
-        setUserProducts((prevProducts) => [
-            ...prevProducts,
-            codprod
-        ])
-        console.log(userProducts);
-        // alert("Añadido");
+        addProduct(codprod);
     }
 
     return (<div className="commerce-card">

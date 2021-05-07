@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SessionContext from "./index";
 
-export default function SessionProvider({children}) {
+export default function SessionProvider({ children }) {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
-    const [userProducts, setUserProducts] = useState([]);
+    const [userProducts, setUserProducts] = useState(new Map(JSON.parse(localStorage.getItem('productMap'))) || null);
 
     // const [isCommerce, setIsCommerce] = useState(false);
 
@@ -29,15 +29,31 @@ export default function SessionProvider({children}) {
 
     }
 
+    const addProduct = (productId) => {
+        console.log("Session Provider -> AddProduct ", productId);
+        console.log("Current userProducts: ", userProducts);
 
-    return (<SessionContext.Provider value={
-        {
-            user,
-            setUser,
-            userProducts,
-            setUserProducts,
-            login
+        let currentAmount = userProducts.get(productId);
+        //First item added
+        if (!currentAmount) {
+            currentAmount = 1;
+            setUserProducts(prev => new Map([...prev, [productId, 1]]))
+        } else {
+            // update amount
+            setUserProducts(prev => new Map([...prev, [productId, currentAmount + 1]]))
         }
-    }> {children} </SessionContext.Provider>);
+
+        console.log("Updated userProducts: ", userProducts);
+        // update localStorage
+        localStorage.setItem('productMap', JSON.stringify(Array.from(userProducts)));
+
+    }
+
+
+    return (
+        <SessionContext.Provider value={{ user, setUser, userProducts, addProduct, login }}>
+            {children}
+        </SessionContext.Provider>
+    );
 
 }
