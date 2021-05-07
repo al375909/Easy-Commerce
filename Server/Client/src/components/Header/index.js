@@ -3,12 +3,12 @@ import cart from "./cesta1.png"
 import userpic from "./user.png"
 
 import "./style.css"
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import SessionContext from "../../context/session";
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 
 export default function Header(props) {
-    const {user, setUser} = useContext(SessionContext);
+    const { user, setUser, userProducts } = useContext(SessionContext);
 
     const [menuOpen, setMenutOpen] = useState(false);
 
@@ -23,8 +23,7 @@ export default function Header(props) {
 
     return (<>
         <div className={
-            `left-menu ${
-                menuOpen ? "open" : "closed"
+            `left-menu ${menuOpen ? "open" : "closed"
             }`
         }>
             <button type="button"
@@ -32,7 +31,7 @@ export default function Header(props) {
                     () => {
                         setMenutOpen(!menuOpen)
                     }
-            }>close</button>
+                }>close</button>
             <div className="links">
                 <ul>
                     <li></li>
@@ -55,7 +54,7 @@ export default function Header(props) {
             <div className="navbar-brand">
                 <a href="/">
                     <img alt=''
-                        src={cesta}/>
+                        src={cesta} />
                 </a>
             </div>
 
@@ -79,17 +78,17 @@ export default function Header(props) {
 
                     <div className="cart-box">
                         <div className="cart">
-                            <img src={cart}/>
+                            <img src={cart} />
                         </div>
 
                         <div className="cart-products">
-                            <p>4</p>
+                            <p>{userProducts.size}</p>
                         </div>
                     </div>
 
                     <div className="user-pic">
                         <img alt='' className="profile-pic"
-                            src={userpic}/>
+                            src={userpic} />
                     </div>
                     <div className="logout">
                         <Link to="/">
