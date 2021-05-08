@@ -29,18 +29,20 @@ export default function SessionProvider({ children }) {
 
     }
 
-    const addProduct = (productId) => {
+    const addProduct = (productId, img, name) => {
         console.log("Session Provider -> AddProduct ", productId);
         console.log("Current userProducts: ", userProducts);
 
-        let currentAmount = userProducts.get(productId);
+        let product = userProducts.get(productId);
+        console.log("Product: ", product)
         //First item added
-        if (!currentAmount) {
-            currentAmount = 1;
-            setUserProducts(prev => new Map([...prev, [productId, 1]]))
+        if (!product || product == null) {
+            // add product 
+            setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: 1 }]]))
         } else {
             // update amount
-            setUserProducts(prev => new Map([...prev, [productId, currentAmount + 1]]))
+            let currentAmount = userProducts.get(productId).amount;
+            setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: currentAmount + 1 }]]))
         }
 
         console.log("Updated userProducts: ", userProducts);

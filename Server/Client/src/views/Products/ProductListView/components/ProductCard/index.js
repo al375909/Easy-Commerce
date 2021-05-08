@@ -6,7 +6,7 @@ export default function ProductCard({ imagen, nombre, codprod }) {
     const { userProducts, addProduct } = useContext(SessionContext);
 
     const handleOnClick = () => {
-        addProduct(codprod);
+        addProduct(codprod, imagen, nombre);
     }
 
     return (<div className="commerce-card">
