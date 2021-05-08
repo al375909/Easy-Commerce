@@ -75,12 +75,9 @@ export default function Header(props) {
                 {user ? <div className="user-box">
 
                     <div className="cart-box"
-                        onmouseover={
-                            () => {
-
-                                setProductsOpen(!productsOpen)
-                            }
-                        }>
+                        onClick={() => {
+                            setProductsOpen(!productsOpen)
+                        }}>
                         <div className="cart">
                             <img src={cart} />
                         </div>
@@ -90,12 +87,20 @@ export default function Header(props) {
                         </div>
 
                     </div>
-                    <div className={
-                        `cart-preview ${productsOpen ? "active" : ""}`}
-                    >
-                        <div className="products">
+                    <div className={`cart-preview ${productsOpen ? "active" : ""}`}>
+                        <div className="products"> {
+                            Array.from(userProducts).map(([key, val]) =>
+                                <div id={key} className="product">
+                                    <div className="info">
+                                        {console.log(val)}
+                                        <img alt='' src={val.productImg} />
+                                        <p className="name">{val.productName}</p>
+                                        <p className="amount">{val.amount}</p>
+                                    </div>
+                                </div>
+                            )
+                        }</div>
 
-                        </div>
                         <div className="checkout">
                             <button className="btn btn-primary">Ir al carrito</button>
                         </div>

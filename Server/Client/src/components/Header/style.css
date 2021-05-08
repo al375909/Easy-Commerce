@@ -109,11 +109,36 @@ html, body {
     width: 380px;
     height: 420px;
     box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+    overflow: hidden;
 }
 
 .cart-preview.active .products {
     width: 100%;
     height: 80%;
+    overflow-y: scroll;
+    padding-top: 23px;
+}
+
+.cart-preview.active .product .info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin: 20px;
+}
+
+.cart-preview.active .product .info p {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.cart-preview.active .product img {
+    width: 33%;
+    flex: 4;
+    margin-right: 15px;
+}
+
+.cart-preview.active .product .name {
+    flex: 6;
 }
 
 .cart-preview.active .checkout {
@@ -127,6 +152,11 @@ html, body {
 .cart-preview.active .checkout button {
     width: 55%;
 }
+
+/* .cart-preview.active .product .endProduct {
+    border-bottom: 3px solid;
+    border-radius: 5px;
+} */
 
 /* User icon */
 
