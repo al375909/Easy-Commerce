@@ -110,13 +110,19 @@ html, body {
     height: 420px;
     box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .cart-preview.active .products {
     width: 100%;
     height: 80%;
     overflow-y: scroll;
-    padding-top: 23px;
+}
+
+.cart-preview.active .product {
+    margin: 10px;
+    border: 2px solid #b9b9b9;
+    border-radius: 10px;
 }
 
 .cart-preview.active .product .info {
@@ -129,6 +135,7 @@ html, body {
 .cart-preview.active .product .info p {
     font-weight: 300;
     font-size: 18px;
+    margin: 0px !important;
 }
 
 .cart-preview.active .product img {
@@ -139,6 +146,10 @@ html, body {
 
 .cart-preview.active .product .name {
     flex: 6;
+}
+
+.cart-preview.active .product .amount {
+    flex: 1;
 }
 
 .cart-preview.active .checkout {

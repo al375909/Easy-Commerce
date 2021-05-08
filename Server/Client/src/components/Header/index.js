@@ -96,6 +96,7 @@ export default function Header(props) {
                                         <img alt='' src={val.productImg} />
                                         <p className="name">{val.productName}</p>
                                         <p className="amount">{val.amount}</p>
+                                        <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                 </div>
                             )
