@@ -12,3 +12,12 @@ code {
 .space-top {
   margin-top: 150px !important;
 }
+
+.space {
+  width: 80%
+}
+
+#root>div {
+  display: flex;
+  justify-content: center;
+}

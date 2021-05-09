@@ -121,8 +121,9 @@ html, body {
 
 .cart-preview.active .product {
     margin: 10px;
-    border: 2px solid #b9b9b9;
+    border: 2px solid #a82525;
     border-radius: 10px;
+    box-shadow: -3px 5px #a82525;
 }
 
 .cart-preview.active .product .info {
