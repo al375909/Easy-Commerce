@@ -30,6 +30,8 @@ export default function Header(props) {
         await setUserProducts(newMap);
         console.log("userProducts", userProducts);
 
+        document.getElementById(productID).remove();
+
     }
 
 
