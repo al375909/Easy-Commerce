@@ -40,9 +40,8 @@ module.exports = {
     res.send(list)
   },
   addProduct: async function(req, res) {
-    console.log(req);
-    commerce = req.body.commerceName;
-    product = {
+    //commerce = req.body.commerceName;
+    const product = {
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
       precio: req.body.precio, 
@@ -52,12 +51,12 @@ module.exports = {
     };
     console.log(product);
     
-
+    const commerce = "PerasMaria";
     // hacemos pequeñas comprobaciones
     /*if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
       res.sendStatus(400);
     }else{*/
-        const validate = await commerceModel.addProduct(product);
+        const validate = await commerceModel.addProduct(commerce, product);
         res.sendStatus(201);
     //  }
     }

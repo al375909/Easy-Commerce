@@ -44,7 +44,8 @@ const getProduct = async (product, commerceName) => {
 // TODOOO URGEEE
 const addProduct = async (product) => {
     const client = await pool.connect();
-    await pool.query('INSERT INTO producto (nombre, descripcion, precio, descuento, cantidad, imagen) VALUES($1, $2, $3, $4, $5, $6);',
+    console.log("AAAAAAAAAAAAA");
+    await client.query('INSERT INTO producto (nombre, descripcion, precio, descuento, cantidad, imagen) VALUES($1, $2, $3, $4, $5, $6);',
                                     [product.nombre, product.descripcion, product.precio, product.descuento, product.cantidad, product.imagen])
                                     .catch(err => console.log("Error al insertar un producto ", err.stack));
     client.release();
@@ -62,8 +63,9 @@ const addProductToCatalog = async (commerce, productId) => {
 }
 
 const getCommerce = async(commerceName) => {
-    const client = await pool.connect();
-    const res = await pool.query('SELECT * from comercio where username = ?' [commerceName])
+    const client = await pool.connect()
+    .catch(err => console.log('Error en la conexion getCommerce ', err.stack));
+    const res = await client.query('SELECT * from comercio where username = $1;', [commerceName])
                 .catch(err => console.log('Error al buscar un comercio concreto ', err.stack));
     await client.end();
     return res.rows;
