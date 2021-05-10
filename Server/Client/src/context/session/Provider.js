@@ -6,7 +6,7 @@ import SessionContext from "./index";
 export default function SessionProvider({ children }) {
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
-    const [userProducts, setUserProducts] = useState(new Map(JSON.parse(localStorage.getItem('productMap'))) || null);
+    const [userProducts, setUserProducts] = useState(new Map(JSON.parse(localStorage.getItem('productMap'))) || new Map());
 
     // const [isCommerce, setIsCommerce] = useState(false);
 
@@ -29,21 +29,29 @@ export default function SessionProvider({ children }) {
 
     }
 
-    const addProduct = (productId, img, name) => {
+    const addProduct = async (productId, img, name) => {
         console.log("Session Provider -> AddProduct ", productId);
         console.log("Current userProducts: ", userProducts);
 
         let product = userProducts.get(productId);
         console.log("Product: ", product)
-        //First item added
-        if (!product || product == null) {
-            // add product 
-            setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: 1 }]]))
+
+        if (!product) {
+            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1 }))
         } else {
-            // update amount
             let currentAmount = userProducts.get(productId).amount;
-            setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: currentAmount + 1 }]]))
+            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1 }))
         }
+
+        //First item added
+        // if (!product || product == null) {
+        //     // add product 
+        //     await setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: 1 }]]))
+        // } else {
+        //     // update amount
+        //     let currentAmount = userProducts.get(productId).amount;
+        //     await setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: currentAmount + 1 }]]))
+        // }
 
         console.log("Updated userProducts: ", userProducts);
         // update localStorage
@@ -53,7 +61,7 @@ export default function SessionProvider({ children }) {
 
 
     return (
-        <SessionContext.Provider value={{ user, setUser, userProducts, addProduct, login }}>
+        <SessionContext.Provider value={{ user, setUser, userProducts, setUserProducts, addProduct, login }}>
             {children}
         </SessionContext.Provider>
     );
