@@ -5,7 +5,6 @@ const passwordHandler = require('../../middleware/passwordHandler');
 module.exports = {
     async login(req, res) { // Recogemos el cliente
         const client = await loginDao.getClientUser(req.query.username);
-        console.log("Cliente --> ", req.query.username);
         // En caso de que exista ese cliente, comprobamos las credenciales
         if (client.length === 1) {
             console.log(client);

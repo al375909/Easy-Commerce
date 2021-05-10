@@ -3,15 +3,9 @@ const passwordHandler = require('../../middleware/passwordHandler');
 
 
 module.exports = {
-<<<<<<< HEAD
     signupCommerce: async function(req, res){
         const commerce = await signupDao.getCommerceUser(req.body.username);
         if(commerce.lenght > 0){ // Si existe algún usuario con ese nombre, no debemos dejar que se cree.
-=======
-    signupCommerce: async function (req, res) {
-        const commerce = signupDao.getCommerceUser(req.body.username);
-        if (commerce.lenght > 0) { // Si existe algún usuario con ese nombre, no debemos dejar que se cree.
->>>>>>> main
             res.send(400);
         } else {
             newUser = {
@@ -49,15 +43,9 @@ module.exports = {
 
         }
     },
-<<<<<<< HEAD
     signupClient: async function(req, res){
         const client = await signupDao.getClientUser(req.body.username);
         if(client.lenght > 0){
-=======
-    signupClient: async function (req, res) {
-        const client = signupDao.getClientUser(req.body.username);
-        if (client.lenght > 0) {
->>>>>>> main
             res.send(400);
         } else {
             newUser = {
@@ -67,7 +55,6 @@ module.exports = {
                 apellidos: req.body.apellidos,
                 email: req.body.email
             }
-<<<<<<< HEAD
             await signupDao.createUser(newUser);
 
             /*const comprobacion = await signupDao.getUser(newUser.username);
@@ -77,10 +64,6 @@ module.exports = {
                 res.sendStatus(500);
                 return;
             }*/
-=======
-            signupDao.createUser(newUser);
-
->>>>>>> main
 
             newClient = {
                 username: req.body.username,
