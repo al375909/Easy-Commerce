@@ -24,13 +24,20 @@ export default function Header(props) {
         console.log("productID", productID)
         console.log("userProducts", userProducts);
 
-        let newMap = userProducts;
-        newMap.delete(productID)
+       
+
+       
+            const newMap = new Map(userProducts);
+            newMap.delete(productID)
+
+   
 
         await setUserProducts(newMap);
+
+
         console.log("userProducts", userProducts);
 
-        document.getElementById(productID).remove();
+        localStorage.setItem('productMap', JSON.stringify(Array.from(newMap)));
 
     }
 
@@ -99,6 +106,7 @@ export default function Header(props) {
                         </div>
 
                         <div className="cart-products">
+
                             <p>{userProducts.size}</p>
                         </div>
 
@@ -122,6 +130,7 @@ export default function Header(props) {
                                     </div>
                                 </div>
                             )
+
                         }</div>
 
                         <div className="checkout">
@@ -138,10 +147,9 @@ export default function Header(props) {
                             <button onClick={logout}>Logout</button>
                         </Link>
                     </div>
-
-
-
-                </div> : <div className="login">
+                </div> 
+                :               
+                <div className="login">
                     <Link to="/login">
                         <button>Login</button>
                     </Link>
