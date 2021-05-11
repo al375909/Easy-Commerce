@@ -8,7 +8,7 @@ export default function Products({ products }) {
 
                 {
                     products.map((item) =>
-                        < ProductCard key={item.id} {...item} />)
+                        < ProductCard key={item.id} product={item} />)
                 }
             </div >
         </div >
