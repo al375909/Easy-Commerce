@@ -29,7 +29,7 @@ export default function AddProductForm(){
           getDroppedOrSelectedFiles(e).then(chosenFiles => {
             resolve(chosenFiles.map(f => f.fileObject))
             setFile(chosenFiles[0]);
-            console.log("chosenFiles[0]")
+            console.log(file)
             
           })
         })
@@ -39,66 +39,64 @@ export default function AddProductForm(){
     return(
 
         <>
-        <div class="card ">
-            <div class="card-body">
+        <div className="card ">
+            <div className="card-body">
                 
                 
-                <div class="form-content my-2">
+                <div className="form-content my-2">
                 <br/>
-                <h2 class="card-title">Añadir un nuevo producto</h2>
+                <h2 className="card-title">Añadir un nuevo producto</h2>
                 <br/>
                 <form>
-                    <div class="form-group">
-                        <label for="inputNomProd" class="form-label">Nombre del producto</label>
-                        <input type="text" class="form-control" id="inputNomProd" placeholder="Por ejemplo: Lata de Sardinas" maxlength="50" required/>
+                    <div className="form-group">
+                        <label htmlFor="inputNomProd" className="form-label">Nombre del producto</label>
+                        <input type="text" className="form-control" id="inputNomProd" placeholder="Por ejemplo: Lata de Sardinas" maxLength="50" required/>
                     </div>
-                    <div class="form-group">
-                        <label for="inputDescripcionProd" class="form-label">Descripción del producto</label>
-                        <textarea class="form-control" id="inputDescripcionProd" placeholder="Lata de sardina de alta calidad pescadas en el Mar Mediterráneo
-Peso escurrido: 250gr" maxlength="500" required></textarea>
+                    <div className="form-group">
+                        <label htmlFor="inputDescripcionProd" className="form-label">Descripción del producto</label>
+                        <textarea className="form-control" id="inputDescripcionProd" placeholder="Lata de sardina de alta calidad pescadas en el Mar Mediterráneo
+Peso escurrido: 250gr" maxLength="500" required></textarea>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputPrecio" class="form-label">Precio</label>
-                            <div class="input-group mb-3">
-                                <input type="number" class="form-control" id="inputPrecio" min="0" step="0.01" placeholder="Indique el precio por unidad" required/>
-                                <span class="input-group-text">€</span>
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label htmlFor="inputPrecio" className="form-label">Precio</label>
+                            <div className="input-group mb-3">
+                                <input type="number" className="form-control" id="inputPrecio" min="0" step="0.01" placeholder="Indique el precio por unidad" required/>
+                                <span className="input-group-text">€</span>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputDescuento" class="form-label">Descuento</label>
-                            <div class="input-group mb-3">
-                                <input type="number" class="form-control" id="inputDescuento" min="0" max="100" placeholder="Indique el descuento del producto" required/>
-                                <span class="input-group-text">%</span>
+                        <div className="form-group col-md-6">
+                            <label htmlFor="inputDescuento" className="form-label">Descuento</label>
+                            <div className="input-group mb-3">
+                                <input type="number" className="form-control" id="inputDescuento" min="0" max="100" placeholder="Indique el descuento del producto" required/>
+                                <span className="input-group-text">%</span>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputInvent" class="form-label">Inventario</label>
-                        <input type="number" class="form-control" id="inputInvent" placeholder="Indique el número de unidades" min="0" required/>
+                    <div className="form-group">
+                        <label htmlFor="inputInvent" className="form-label">Inventario</label>
+                        <input type="number" className="form-control" id="inputInvent" placeholder="Indique el número de unidades" min="0" required/>
                     </div>
-                    <div class="form-group dropbox">
-                        <label for="inputInvent" class="form-label">Imagen del producto</label>
-                        
-                        <Dropzone
-                        maxFiles={1}
-                        getFilesFromEvent={getFilesFromEvent}
-                        inputContent={'Arrastre la imagen o haga click para explorar'}
-                        styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
-                        />
-                    </div>
-           
-
-
-
-                    <div class="form row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-danger float-left">Cancelar</button>
+                    <div>
+                        <div className="form-group dropbox">
+                            <label htmlFor="inputInvent" className="form-label">Imagen del producto</label>
+                            
+                            <Dropzone
+                            maxFiles={1}
+                            getFilesFromEvent={getFilesFromEvent}
+                            inputContent={'Arrastre la imagen o haga click para explorar'}
+                            styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
+                            />
                         </div>
                         
-                        <div class="col-6">
-                            <button type="button" class="btn btn-success float-right">Subir artículo</button>
+                        
+                        <div className="col">
+                            <button type="button" className="btn btn-danger float-left">Cancelar</button>                        
                         </div>
+                        <div className="col">
+                            <button type="button" className="btn btn-success float-right">Subir artículo</button>
+                        </div>
+                        
                     </div>
                 </form>
                 </div>
