@@ -18,7 +18,7 @@ export default function ProductCard({product}) {
         <div className="card-body">
             <div className="card-info">
                 <h5 className="card-title"> {product.nombre}</h5>
-                {product.descuento > 0 ? <div> <p className="precio-ant-descuento">{product.precio}€</p>  <p className="precio-con-descuento">{(product.precio - (product.precio * product.descuento)).toFixed(2)}€</p> <p className="descuento">-{product.descuento*100}%</p></div>: <p className="precio-original">{product.precio}€</p>}
+                {product.descuento > 0 ? <div> <p className="precio-ant-descuento">{product.precio}€</p>  <p className="precio-con-descuento">{(product.precio - (product.precio * product.descuento)).toFixed(2)}€</p> <p className="descuento">(-{product.descuento*100}%)</p></div>: <p className="precio-original">{product.precio}€</p>}
             </div>
 
             <a href="#" className="btn btn-primary"
