@@ -3,26 +3,7 @@ const pool = require('../../middleware/dbConnection').pool;
 // Listado de todos los comercios disponibles.
 // TODO: LISTADO DE COMERCIOS CERCANOS 
 const listCommerce = async () => {
-    console.log("Antes de la conexión");
-    //let res;
-    /*await pool.connect((err, client, release) => {
-        if(err){
-            return console.error('Error in the client conection ', err.stack);
-        }
-        client.query('SELECT * FROM comercio;', (err, result) => {
-            release();
-            if(err){
-                return console.error('Error in the query ', err.stack);
-            }
-            console.log(result);
-            res = result;
-        })
-    });*/
-    //return res.rows;
-    
     const client = await pool.connect().catch(err => console.log('Error ejecutando la conexión ', err.stack));
-
-    console.log("Después de la conexión");
     const result = await client.query({
         text: "SELECT * FROM comercio; ",
     }).catch(err => console.log('Error ejecutando la consulta ', err.stack));
@@ -37,14 +18,47 @@ const createCommerce = async (commerce) => {
     const client = await pool.connect();
     const res = await pool.query('INSERT INTO comercio SET ?', [commerce]);
     await client.end();
-    return res.rows();
+    return res.rows;
 };
 
 const getProducts = async (commerceName) => {
     const client = await pool.connect();
     const res = await pool.query('SELECT * from PRODUCTO JOIN catalogo as c USING(codprod) WHERE c.username = $1;', [commerceName]);
-    await client.end();
+    client.release();
     return res.rows;
+}
+
+
+// TOODOOOOO: URGE
+const getProduct = async (product, commerceName) => {
+    const client = await pool.connect();
+    const res = await pool.query('SELECT * from PRODUCTO as p JOIN catalogo as c USING(codprod) WHERE c.username = $1 and \
+                                p.nombre = $2 and p.descripcion = $3;', [product.nombre, product.descripcion, commerceName])
+                                .catch(err => console.log('Error al consultar un producto ', err.stack));
+                                
+    
+    client.release();
+    return res.rows;
+}
+
+// TODOOO URGEEE
+const addProduct = async (product) => {
+    const client = await pool.connect();
+    await pool.query('INSERT INTO producto (nombre, descripcion, precio, descuento, cantidad, imagen) VALUES($1, $2, $3, $4, $5, $6);',
+                                    [product.nombre, product.descripcion, product.precio, product.descuento, product.cantidad, product.imagen])
+                                    .catch(err => console.log("Error al insertar un producto ", err.stack));
+    client.release();
+    return;
+}
+
+
+// TODOOO URGEEEE
+const addProductToCatalog = async (commerce, productId) => {
+    const client = await pool.connect();
+    await pool.query('INSERT INTO catalogo (codprod, username) VALUES($1, $2);', [commerce, productId])
+                    .catch(err => console.log('Error al insertar un producto en el catalogo ', err.stack)); // insertamos sobre la tabla de catalogo
+    client.release();
+    // return falta ver qué devolver
 }
 
 const getCommerce = async(commerceName) => {
@@ -52,9 +66,11 @@ const getCommerce = async(commerceName) => {
     const res = await pool.query('SELECT * from comercio where username = ?' [commerceName])
                 .catch(err => console.log('Error al buscar un comercio concreto ', err.stack));
     await client.end();
-    return res.rows();
+    return res.rows;
 }
 
 module.exports.listCommerce = listCommerce;
 module.exports.getProducts = getProducts;
 module.exports.getCommerce = getCommerce;
+module.exports.addProduct = addProduct;
+module.exports.addProductToCatalog = addProductToCatalog;

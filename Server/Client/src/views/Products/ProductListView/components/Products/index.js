@@ -1,24 +1,18 @@
 import ProductCard from "../ProductCard";
 
 
-export default function Products({products}){
+export default function Products({ products }) {
+    return (
+        <div className="space">
+            <div className="card-container">
 
-    
-
-    return(
-        <div className="m-4">
-
-        <div className="card-container">
-            {products.map((item) =>
-
-                <ProductCard key={item.id} {...item}/>
-
-            )}
-
+                {
+                    products.map((item) =>
+                        < ProductCard key={item.id} product={item} />)
+                }
+            </div>
         </div>
-                 
-           
-    </div>
     );
+
 
 }

@@ -9,7 +9,8 @@ module.exports = {
     },
     matchPassword: async(password, savedPassword) => {
         try{
-            await bscrypt.compare(password, savedPassword);
+            const result = await bscrypt.compare(password, savedPassword);
+            return result;
         }catch(err){
             console.log(err);
         }

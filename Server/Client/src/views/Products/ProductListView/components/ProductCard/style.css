@@ -1,0 +1,16 @@
+.precio-ant-descuento{
+    text-decoration: line-through;
+    color: gray;
+}
+
+.precio-con-descuento{
+    color: black;
+}
+
+.precio-original{
+    color: black;
+}
+
+.descuento{
+    color:green;
+}

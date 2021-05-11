@@ -12,9 +12,11 @@ export default function Home() {
 
 
     useEffect(() => { // al refrescar la pagina no se perdera la informacion del provider
-        console.log("el usuario " + user);
-        localStorage.setItem('user', user)
-
+        console.log(user);
+        const name= user? user.username: "no hay";
+        console.log("el usuario " + name);
+        
+        
         // Usa la función gteDato donde se setea la varibale datos al renderizar el componente
         getDato()
 
@@ -25,7 +27,7 @@ export default function Home() {
         <div>
             <Header/>
             <Commerces datos={datos}/>
-            <AddProductView/>
+            {/* <AddProductView/> Pablo la lio aqui, no tocar*/}
         </div>
 
     );

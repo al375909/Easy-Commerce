@@ -8,34 +8,42 @@ import {
     Route,
     Link,
     useParams
-  } from "react-router-dom";
+} from "react-router-dom";
 import TiendasContext from "../../../context/tiendas";
 import ProductsContext from "../../../context/products";
 
+import "./style.css"
 
-export default function ProductList({match}){
 
-    const {products,getCommerceProducts}=useContext(ProductsContext)
-    let {id} = match.params;
-    
-    const username=id
-   
-    
-    
-    useEffect(async ()=>{
-     
-      await getCommerceProducts({username})
-    
-      
+export default function ProductList({ match }) {
 
-    },[]);
+    const { products, getCommerceProducts } = useContext(ProductsContext)
+    const { datos } = useContext(TiendasContext);
 
-    return(
+    let { id } = match.params;
+    const username = id
+
+    let commerceScope = null;
+    Array.from(datos).map((commerce) => {
+        if (commerce.username == id) {
+            commerceScope = commerce;
+        }
+    })
+
+    useEffect(async () => {
+        await getCommerceProducts({ username })
+    }, []);
+
+    return (
         <div>
             <Header></Header>
-            
-            <Products products={products}></Products>
+            <div className="commerce-products space" >
+                <div className="commerce-info">
+                    <img alt='' src={commerceScope.imagen} />
+                    <h1>{commerceScope.username}</h1>
+                </div>
+                <Products products={products}></Products>
+            </div>
 
-        </div>
-    );
+        </div>);
 }
