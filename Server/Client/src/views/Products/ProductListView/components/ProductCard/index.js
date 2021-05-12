@@ -2,13 +2,15 @@ import SessionContext from "../../../../../context/session";
 import { useContext, useState } from "react";
 
 import "./style.css"
+import ProductPopUp from "../ProductPopUp";
 
-export default function ProductCard({product}) {
+export default function ProductCard({ product }) {
 
     const { userProducts, addProduct } = useContext(SessionContext);
 
-    const handleOnClick = () => {
+    const handleOnClick = (event) => {
         addProduct(product.codprod, product.imagen, product.nombre);
+        event.preventDefault()
     }
 
     return (<div className="commerce-card">
@@ -17,11 +19,23 @@ export default function ProductCard({product}) {
             alt="Card image cap" />
         <div className="card-body">
             <div className="card-info">
-                <h5 className="card-title"> {product.nombre}</h5>
-                {product.descuento > 0 ? <div> <p className="precio-ant-descuento">{product.precio}€</p>  <p className="precio-con-descuento">{(product.precio - (product.precio * product.descuento)).toFixed(2)}€</p> <p className="descuento">(-{product.descuento*100}%)</p></div>: <p className="precio-original">{product.precio}€</p>}
-            </div>
+                <div className="top-side">
+                    <h5 className="card-title"> {product.nombre}</h5>
+                </div>
+                <div className="bottom-side">
+                    {product.descuento > 0 ?
+                        <div className="precio">
+                            <p className="precio-con-descuento precio-final">{(product.precio - (product.precio * product.descuento)).toFixed(2)}€</p>
+                            <p className="precio-ant-descuento">{product.precio}€</p>
+                            <p className="descuento">(-{product.descuento * 100}%)</p>
+                        </div>
 
-            <a href="#" className="btn btn-primary"
+                        : <p className="precio-final">{product.precio}€</p>
+                    }
+                </div>
+            </div>
+            <ProductPopUp product={product}/>
+            <a href="#" className="btn btn-primary add-product-btn"
                 onClick={handleOnClick}>Añadir</a>
         </div>
     </div>);
