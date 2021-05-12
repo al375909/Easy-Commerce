@@ -29,7 +29,7 @@ export default function SessionProvider({ children }) {
 
     }
 
-    const addProduct = async (productId, img, name) => {
+    const addProduct = async (productId, img, name,nombreTienda) => {
         console.log("Session Provider -> AddProduct ", productId);
         console.log("Current userProducts: ", userProducts);
 
@@ -37,10 +37,10 @@ export default function SessionProvider({ children }) {
         console.log("Product: ", product)
 
         if (!product) {
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1 }))
+            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1 ,nombreTienda}))
         } else {
             let currentAmount = userProducts.get(productId).amount;
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1 }))
+            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1,nombreTienda }))
         }
 
         //First item added

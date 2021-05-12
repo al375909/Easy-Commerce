@@ -4,6 +4,7 @@ import Login from "../views/Login";
 import Signup from "../views/Signup"
 import ProductList from "../views/Products/ProductListView";
 import ProductsProvider from "../context/products/Provider";
+import Checkout from "../views/ShoppingCart";
 
 export default function Routes() {
 
@@ -23,9 +24,13 @@ export default function Routes() {
                 </Route>
 
                 <ProductsProvider>
-                <Route path="/:id/products"  render={({ match }) => <ProductList match={match} />} >  
+                <Route path="/:id/products"  render={({ match }) => <ProductList match={match} />}  exact>  
                 </Route>
                 </ProductsProvider>
+
+                <Route path="/checkout" component={Checkout} exact>
+                </Route>
+                
 
             </Switch>
         </Router>
