@@ -8,8 +8,9 @@ export default function ProductCard({ product }) {
     const { userProducts, addProduct } = useContext(SessionContext);
 
     const handleOnClick = (event) => {
+        // event.preventDefault()
         addProduct(product.codprod, product.imagen, product.nombre);
-        event.preventDefault()
+        return false;
     }
 
     return (<div className="commerce-card">
@@ -34,8 +35,9 @@ export default function ProductCard({ product }) {
                 </div>
             </div>
 
-            <a href="#" className="btn btn-primary"
-                onClick={handleOnClick}>Añadir</a>
+            // TODO Evitar que al añadir producto la web haga scroll top
+            <a href="#" className="btn btn-primary" onClick={handleOnClick}>Añadir con Link</a>
+
         </div>
     </div>);
 }
