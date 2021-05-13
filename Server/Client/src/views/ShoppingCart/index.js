@@ -4,9 +4,10 @@ import CheckoutContainer from "./CheckoutContainer";
 export default function Checkout(){
 
     return(
-        
-        <h1>Holaaaaaa</h1>
-        
+        <>
+            <Header/>   
+            <CheckoutContainer/>
+        </>
     );
 
 

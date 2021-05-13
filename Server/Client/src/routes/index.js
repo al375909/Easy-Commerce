@@ -22,14 +22,20 @@ export default function Routes() {
 
                 <Route path="/signup" component={Signup} exact>
                 </Route>
-
-                <ProductsProvider>
-                <Route path="/:id/products"  render={({ match }) => <ProductList match={match} />}  exact>  
+                
+                <Route path="/:id/products"  render={({ match }) =>
+                    <ProductsProvider>
+                        <ProductList match={match} />
+                    </ProductsProvider>}
+                exact>  
                 </Route>
-                </ProductsProvider>
 
                 <Route path="/checkout" component={Checkout} exact>
                 </Route>
+
+
+                
+
                 
 
             </Switch>

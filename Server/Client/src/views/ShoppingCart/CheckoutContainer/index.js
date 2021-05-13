@@ -29,7 +29,7 @@ export default function CheckoutContainer(){
 
     return(
         <div className="checkout-container">
-            <h1>Hola</h1>
+            
         </div>
     );
 }
