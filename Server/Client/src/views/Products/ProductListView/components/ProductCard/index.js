@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
                 </div>
             </div>
 
-            // TODO Evitar que al añadir producto la web haga scroll top
+            {/* // TODO Evitar que al añadir producto la web haga scroll top */}
             <a href="#" className="btn btn-primary" onClick={handleOnClick}>Añadir con Link</a>
 
         </div>

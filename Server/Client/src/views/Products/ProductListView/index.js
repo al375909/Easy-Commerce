@@ -25,6 +25,7 @@ export default function ProductList({ match }) {
 
     let commerceScope = null;
     Array.from(datos).map((commerce) => {
+        console.log("commerce", commerce);
         if (commerce.username == id) {
             commerceScope = commerce;
         }
