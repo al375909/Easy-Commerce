@@ -134,8 +134,11 @@ export default function Header(props) {
                         }</div>
 
                         <div className="checkout">
+                            <Link to="/checkout">
                             <button className="btn btn-primary">Ir al carrito</button>
+                            </Link>
                         </div>
+
                     </div>
 
                     <div className="user-pic">
