@@ -44,6 +44,7 @@ export default function SessionProvider({ children }) {
         }
 
 
+
         console.log("Updated userProducts: ", userProducts);
         // update localStorage
         localStorage.setItem('productMap', JSON.stringify(Array.from(userProducts)));
