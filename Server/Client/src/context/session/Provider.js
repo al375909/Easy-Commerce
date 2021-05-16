@@ -29,7 +29,7 @@ export default function SessionProvider({ children }) {
 
     }
 
-    const addProduct = async (productId, img, name,nombreTienda) => {
+    const addProduct = async (productId, img, name, nombreTienda) => {
         console.log("Session Provider -> AddProduct ", productId);
         console.log("Current userProducts: ", userProducts);
 
@@ -37,21 +37,12 @@ export default function SessionProvider({ children }) {
         console.log("Product: ", product)
 
         if (!product) {
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1 ,nombreTienda}))
+            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1, nombreTienda }))
         } else {
             let currentAmount = userProducts.get(productId).amount;
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1,nombreTienda }))
+            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1, nombreTienda }))
         }
 
-        //First item added
-        // if (!product || product == null) {
-        //     // add product 
-        //     await setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: 1 }]]))
-        // } else {
-        //     // update amount
-        //     let currentAmount = userProducts.get(productId).amount;
-        //     await setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: currentAmount + 1 }]]))
-        // }
 
         console.log("Updated userProducts: ", userProducts);
         // update localStorage

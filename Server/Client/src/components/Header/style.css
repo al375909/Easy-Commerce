@@ -164,7 +164,7 @@ html, body {
 }
 
 .cart-preview.active .checkout button {
-    width: 55%;
+    width: 100%;
 }
 
 /* .cart-preview.active .product .endProduct {
