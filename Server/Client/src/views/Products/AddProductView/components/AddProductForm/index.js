@@ -10,49 +10,66 @@ export default function AddProductForm(){
     const [file, setFile] = useState('');
 
     const date = new Date();
+    var imagen;
+    var archivo;
 
-      const handleSubmit = async (files, allFiles) => {
-        console.log("He llegado hasta aquí 1");
-        console.log(allFiles)
+      const uploadImage = async (file) => {
         const f = new FormData();
-        f.append("key", "893b927042e526398eb2aff94c2eeeb9");
-        f.append("image", allFiles[0].file);
-        f.append("name", date.toISOString());
-
+        f.append("key", "98dbdb8971adce611fe10bc7f5bb7b97");
+        f.append("image", file.fileObject);
+        //f.append("name", date.toISOString());
+        console.log("Antes de hacer el post");
         await axios.post("https://api.imgbb.com/1/upload", f)
             .then(resp => {
-                console.log(resp.data.data) // I'm aware it's data.data, that is how it returns stuff
+                console.log(resp.data.data);
+                imagen = resp.data.data; // I'm aware it's data.data, that is how it returns stuff
+                setFile(imagen.url);
         })
+        console.log("Despues de hacer el post");
+        console.log("imagen.url");
+        console.log(imagen.url);
+        console.log("archivo", archivo);
+        console.log(archivo);
+
+        if(typeof archivo !== "undefined"){
+            console.log("existe archivo");
+        }
+        else{
+            console.log("NOO existe archivo");
+        }
 
       }
 
-      const handleFormSubmit  = async (files, allFiles) => {
+    const handleFormSubmit  = async () => {
         let myForm = document.getElementById('addProductForm');
         let formData = new FormData(myForm);    
         console.log("FORM", formData);
-        console.log("Nom poroduct", formData.get("inputNomProd"));
-        console.log("He llegado hasta aquí 2");
+        console.log("Nom product", formData.get("inputNomProd"));
+
+        if(typeof archivo !== "undefined"){
+            await uploadImage(archivo);
+        }
+        console.log("Imagen", imagen);
+        console.log("archivo", archivo);
         await axios.post("/api/tiendas/products", {
             nombre: formData.get("nombre"),
-        descripcion:  formData.get("descripcion"),
-        precio:  formData.get("precio"),
-        descuento:  formData.get("descuento"),
-        cantidad:  formData.get("cantidad"),
-        imagen:  "patata" })
+            descripcion:  formData.get("descripcion"),
+            precio:  formData.get("precio"),
+            descuento:  formData.get("descuento"),
+            cantidad:  formData.get("cantidad"),
+            imagen: file })
         .then(res => {
-        console.log("HOALAA",res);
-        console.log("KOAALA",res.data);
+            console.log("Mira la base de datos porque parece que funciona ;)");
         })
     }
 
-      const getFilesFromEvent = e => {
+      const getFilesFromEvent = async (e) => {
         return new Promise(resolve => {
           getDroppedOrSelectedFiles(e).then(chosenFiles => {
             resolve(chosenFiles.map(f => f.fileObject))
             setFile(chosenFiles[0]);
-            console.log("chosenFiles[0]")
-            
-          })
+            uploadImage(chosenFiles[0]);
+          })//.then(val => uploadImage(val));
         })
       }
 
