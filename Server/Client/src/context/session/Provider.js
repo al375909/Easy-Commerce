@@ -29,21 +29,19 @@ export default function SessionProvider({ children }) {
 
     }
 
-    const addProduct = async (productId, img, name, nombreTienda) => {
-        console.log("Session Provider -> AddProduct ", productId);
+    const addProduct = async (productObj, nombreTienda) => {
+        console.log("Session Provider -> AddProduct ", productObj.codprod);
         console.log("Current userProducts: ", userProducts);
 
-        let product = userProducts.get(productId);
+        let product = userProducts.get(productObj.codprod);
         console.log("Product: ", product)
 
         if (!product) {
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1, nombreTienda }))
+            await setUserProducts(userProducts.set(productObj.codprod, { product: productObj, amount: 1, nombreTienda }))
         } else {
-            let currentAmount = userProducts.get(productId).amount;
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1, nombreTienda }))
+            let currentAmount = userProducts.get(productObj.codprod).amount;
+            await setUserProducts(userProducts.set(productObj.codprod, { product: productObj, amount: currentAmount + 1, nombreTienda }))
         }
-
-
 
         console.log("Updated userProducts: ", userProducts);
         // update localStorage

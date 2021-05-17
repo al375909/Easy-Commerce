@@ -24,13 +24,13 @@ export default function Header(props) {
         console.log("productID", productID)
         console.log("userProducts", userProducts);
 
-       
 
-       
-            const newMap = new Map(userProducts);
-            newMap.delete(productID)
 
-   
+
+        const newMap = new Map(userProducts);
+        newMap.delete(productID)
+
+
 
         await setUserProducts(newMap);
 
@@ -117,8 +117,8 @@ export default function Header(props) {
                                 <div id={key} className="product">
                                     <div className="info">
                                         {console.log(val)}
-                                        <img alt='' src={val.productImg} />
-                                        <p className="name">{val.productName}</p>
+                                        <img alt='' src={val.product.imagen} />
+                                        <p className="name">{val.product.nombre}</p>
                                         <p className="amount">{val.amount}</p>
                                         <button type="button" class="close" aria-label="Close" onClick={() => { deleteProduct(key) }}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -135,7 +135,7 @@ export default function Header(props) {
 
                         <div className="checkout">
                             <Link to="/checkout">
-                            <button className="btn btn-primary">Ir al carrito</button>
+                                <button className="btn btn-primary">Ir al carrito</button>
                             </Link>
                         </div>
 
@@ -150,13 +150,13 @@ export default function Header(props) {
                             <button onClick={logout}>Logout</button>
                         </Link>
                     </div>
-                </div> 
-                :               
-                <div className="login">
-                    <Link to="/login">
-                        <button>Login</button>
-                    </Link>
                 </div>
+                    :
+                    <div className="login">
+                        <Link to="/login">
+                            <button>Login</button>
+                        </Link>
+                    </div>
                 } </div>
         </nav>
     </>);

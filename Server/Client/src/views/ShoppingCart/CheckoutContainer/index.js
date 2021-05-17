@@ -1,35 +1,41 @@
 import { useContext } from "react";
 import SessionContext from "../../../context/session";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import PurchaseProducts from "./PurchaseProducts";
+import PurchasePayment from "./PurchasePayment";
 
-export default function CheckoutContainer(){
+export default function CheckoutContainer() {
 
-    const {userProducts} = useContext(SessionContext);
+    const { userProducts } = useContext(SessionContext);
+
+    const [productsMap, setProductsMap] = useState(new Map());
 
 
-    const buildShopsFromMap = () =>{
-         let newMap = new Map();
-         console.log("perrrrrrp");
-         Array.from(userProducts).map(([key,val])=>{
-            let productList=newMap.get(val.nombreTienda)
-            if(productList){
+    const buildShopsFromMap = () => {
+        let newMap = new Map();
+        console.log("perrrrrrp");
+        Array.from(userProducts).map(([key, val]) => {
+            let productList = newMap.get(val.nombreTienda)
+            if (productList) {
                 productList.push(val)
-            }else{
-                newMap.set(val.nombreTienda,[val]);
+            } else {
+                newMap.set(val.nombreTienda, [val]);
             }
-                      
 
-         })
-         console.log(newMap);
-    } 
 
-    useEffect(()=>{
+        })
+        setProductsMap(newMap);
+        console.log(newMap);
+    }
+
+    useEffect(() => {
         buildShopsFromMap();
-    },[])
+    }, [])
 
-    return(
-        <div className="checkout-container">
-            
+    return (
+        <div className="checkout-container space-top space">
+            <PurchaseProducts productsMap={productsMap}></PurchaseProducts>
+            <PurchasePayment productsMap={productsMap}></PurchasePayment>
         </div>
     );
 }

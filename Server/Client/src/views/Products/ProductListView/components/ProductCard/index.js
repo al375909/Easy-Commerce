@@ -3,13 +3,13 @@ import { useContext, useState } from "react";
 
 import "./style.css"
 
-export default function ProductCard({ product ,tienda}) {
+export default function ProductCard({ product, tienda }) {
 
     const { userProducts, addProduct } = useContext(SessionContext);
 
     const handleOnClick = (event) => {
         // event.preventDefault()
-        addProduct(product.codprod, product.imagen, product.nombre,tienda);
+        addProduct(product, tienda);
         return false;
     }
 
