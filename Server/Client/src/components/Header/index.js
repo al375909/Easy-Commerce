@@ -5,7 +5,7 @@ import userpic from "./user.png"
 import "./style.css"
 import { Link } from "react-router-dom";
 import SessionContext from "../../context/session";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export default function Header(props) {
     const { user, setUser, userProducts, setUserProducts, deleteProduct } = useContext(SessionContext);
@@ -19,21 +19,18 @@ export default function Header(props) {
         setUser(null);
     }
 
-    // const deleteProduct = async (productID) => {
-    //     console.log("productID", productID)
-    //     console.log("userProducts", userProducts);
+    function countProducts() {
+        let total = 0;
+        Array.from(userProducts).map(([key, val]) =>
+            val.map((productInf) =>
+                total += productInf.amount
+            ))
+        return total;
+    };
 
-    //     const newMap = new Map(userProducts);
-    //     newMap.delete(productID)
-
-    //     await setUserProducts(newMap);
-
-    //     console.log("userProducts", userProducts);
-
-    //     localStorage.setItem('productMap', JSON.stringify(Array.from(newMap)));
-
-    // }
-
+    // useEffect(() => {
+    //     countProducts();
+    // });
 
     return (<>
         <div className={
@@ -100,7 +97,7 @@ export default function Header(props) {
 
                         <div className="cart-products">
 
-                            <p>{userProducts.size}</p>
+                            <p>{countProducts()}</p>
                         </div>
 
                     </div>
