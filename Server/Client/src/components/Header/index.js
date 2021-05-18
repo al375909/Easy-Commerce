@@ -28,9 +28,6 @@ export default function Header(props) {
         return total;
     };
 
-    // useEffect(() => {
-    //     countProducts();
-    // });
 
     return (<>
         <div className={
