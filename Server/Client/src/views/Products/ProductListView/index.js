@@ -25,10 +25,10 @@ export default function ProductList({ match }) {
     let nombreTienda;
     let commerceScope = null;
     Array.from(datos).map((commerce) => {
-        console.log("commerce", commerce);
+        // console.log("commerce", commerce);
         if (commerce.username == id) {
             commerceScope = commerce;
-            nombreTienda=commerce.nombretienda;
+            nombreTienda = commerce.nombretienda;
         }
     })
 

@@ -1,11 +1,17 @@
-export default function PurchasePayment({ productsMap }) {
+import { useContext } from "react";
+import SessionContext from "../../../../context/session";
+
+
+export default function PurchasePayment() {
+
+    const { userProducts, deleteProduct } = useContext(SessionContext);
 
     function pricePerShop(idShop) {
         let totalAmount = 0;
 
-        let products = productsMap.get(idShop);
-        products.forEach(product => {
-            totalAmount += (product.amount * (product.product.precio - (product.product.precio * product.product.descuento)));
+        let products = userProducts.get(idShop);
+        products.forEach(productInf => {
+            totalAmount += (productInf.amount * (productInf.product.precio - (productInf.product.precio * productInf.product.descuento)));
         })
         return totalAmount;
     }
@@ -15,7 +21,7 @@ export default function PurchasePayment({ productsMap }) {
         <div className="purchase-payment-container">
             <div className="purchase-price">
                 {
-                    Array.from(productsMap).map(([key, val]) =>
+                    Array.from(userProducts).map(([key, val]) =>
                         <p>{key}: {pricePerShop(key)} </p>
                     )
                 }
