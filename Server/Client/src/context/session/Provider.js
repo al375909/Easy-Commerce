@@ -24,7 +24,7 @@ export default function SessionProvider({ children }) {
         console.log(data.data)
         if (data.status != 401) {
             setUser(data.data);
-            await localStorage.setItem('user', JSON.stringify(data.data));
+            localStorage.setItem('user', JSON.stringify(data.data));
         }
 
     }
@@ -54,7 +54,6 @@ export default function SessionProvider({ children }) {
                 newProducts.push(updatedProduct);
                 setUserProducts(userProducts.set(shopID, newProducts));
             }
-
         }
 
         // update localStorage
@@ -62,11 +61,19 @@ export default function SessionProvider({ children }) {
     }
 
     const deleteProduct = (shopID, productID) => {
-        let products = userProducts.get(shopID);
+        let newMap = new Map(userProducts)
+
+        let products = newMap.get(shopID);
         const newProducts = products.filter(productInf => productInf.product.codprod != productID);
 
-        setUserProducts(userProducts.set(shopID, newProducts))
-        localStorage.setItem('productMap', JSON.stringify(Array.from(userProducts)));
+        if (newProducts.length == 0) {
+            newMap.delete(shopID)
+        } else {
+            newMap.set(shopID, newProducts)
+        }
+        setUserProducts(newMap);
+
+        localStorage.setItem('productMap', JSON.stringify(Array.from(newMap)));
     }
 
 

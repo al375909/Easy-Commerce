@@ -1,63 +1,61 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import SessionContext from "../../../../context/session";
 
 
-export default function PurchasePayment() {
-
+export default function PurchasePayment({ totalCost }) {
     const { userProducts, deleteProduct } = useContext(SessionContext);
 
-    useEffect(() => {
-        totalPrice()
-    })
+    const [payment, setPayment] = useState("Ninguno");
 
     function pricePerShop(idShop) {
         let totalAmount = 0;
-
         let products = userProducts.get(idShop);
         products.forEach(productInf => {
             totalAmount += (productInf.amount * (productInf.product.precio - (productInf.product.precio * productInf.product.descuento)));
         })
-
         return totalAmount;
-    }
+    };
 
-    function totalPrice() {
-        let totalAmount = 0;
-        Array.from(userProducts).map(([key, val]) => {
-            console.log("Key", key, "Value: ", val);
-            val.forEach(productInf => {
-                console.log("productInf", productInf)
-                totalAmount = + (productInf.amount * ((productInf.product.precio - (productInf.product.precio * productInf.product.descuento))))
-            })
-        })
-        return totalAmount;
-    }
 
     return (
         <div className="purchase-payment-container">
-            <h2> Tu Ticke :)</h2>
+            <h2> Tu Ticket :)</h2>
+            <div className="order-details">
+                <div className="purchase-price">
+                    <div className="price-per-shop">
+                        <p> Desglose:</p>
+                        <ul>
 
-            <div className="purchase-price">
-                <div className="price-per-shop">
-                    {
-                        Array.from(userProducts).map(([key, val]) =>
-                            <p>{key}: {pricePerShop(key)} </p>
-                        )
-                    }
+                            {
+                                Array.from(userProducts).map(([key, val]) =>
+                                    <li>{key}: {pricePerShop(key)}€ </li>
+                                )
+                            }
 
+                        </ul>
+
+                    </div>
+                    <div className="total-price">
+                        <p> Total: {totalCost}€</p>
+                    </div>
                 </div>
-                <div className="total-price">
-                    <p> Total: {totalPrice()}</p>
+
+                <div className="payment-method">
+                    <div className="form" onChange={(event) => { setPayment(event.target.value) }}>
+                        <input type="radio" value="Efectivo" name="paymentMethod" /> Efectivo
+                        <input type="radio" value="Tarjeta" name="paymentMethod" /> Tarjeta
+                        <input type="radio" value="Cupones" name="paymentMethod" /> Cupones
+                    </div>
+
+                    <p>Método de pago seleccionado: {payment}</p>
+                </div>
+
+                <div className="submit-order">
+                    <button className="btn btn-primary">Confirmar pedido</button>
                 </div>
             </div>
 
-            <div className="payment-method">
 
-            </div>
-
-            <div className="submit-order">
-
-            </div>
         </div>
 
     )
