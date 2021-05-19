@@ -1,14 +1,13 @@
-@media(max-width:1024px){
-
-        
-    .card-container{
+@media(max-width:1024px) {
+    .card-container {
         display: flex;
-        flex-flow: column ;
+        flex-flow: column;
     }
-
-    .commerce-card{
+    .commerce-card {
         width: 100%;
-        margin-bottom: 20px ;
+        margin-bottom: 20px;
     }
-
+    .burger-menu {
+        display: block !important;
+    }
 }

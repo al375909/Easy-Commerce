@@ -65,7 +65,7 @@ export default function AddProductForm(){
             <div class="card-body">   
                 <div class="form-content my-2">
                 <br/>
-                <h2 class="card-title">Añadir un nuevo producto</h2>
+                <h2 className="card-title">Añadir un nuevo producto</h2>
                 <br/>
                 <form onSubmit={handleFormSubmit} name="addProductForm" id="addProductForm">
                     <div class="form-group">
@@ -97,28 +97,25 @@ export default function AddProductForm(){
                         <label for="inputInvent" class="form-label">Inventario</label>
                         <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Indique el número de unidades" min="0" required/>
                     </div>
-                    <div class="form-group dropbox">
-                        <label for="inputInvent" class="form-label">Imagen del producto</label>
-                        
-                        <Dropzone
-                        maxFiles={1}
-                        getFilesFromEvent={getFilesFromEvent}
-                        inputContent={'Arrastre la imagen o haga click para explorar'}
-                        styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
-                        />
-                    </div>
-           
-
-
-
-                    <div class="form row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-danger float-left">Cancelar</button>
+                    <div>
+                        <div className="form-group dropbox">
+                            <label htmlFor="inputInvent" className="form-label">Imagen del producto</label>
+                            
+                            <Dropzone
+                            maxFiles={1}
+                            getFilesFromEvent={getFilesFromEvent}
+                            inputContent={'Arrastre la imagen o haga click para explorar'}
+                            styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
+                            />
                         </div>
                         
                         <div class="col-6">
                             <button type="submit" class="btn btn-success float-right">Subir artículo</button>
                         </div>
+                        <div className="col">
+                            <button type="button" className="btn btn-success float-right">Subir artículo</button>
+                        </div>
+                        
                     </div>
                 </form>
                 </div>

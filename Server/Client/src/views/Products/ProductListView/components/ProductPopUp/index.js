@@ -1,20 +1,23 @@
+import React from 'react';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 import SessionContext from "../../../../../context/session";
 import { useContext, useState } from "react";
 
 import "./style.css"
-import ProductPopUp from "../ProductPopUp";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfo } from '@fortawesome/free-solid-svg-icons'
+ 
+export default function ProductPopUp ({ product }){
 
-export default function ProductCard({ product, tienda }) {
+  const { userProducts, addProduct } = useContext(SessionContext);
 
-    const { userProducts, addProduct } = useContext(SessionContext);
-
-    const handleOnClick = (event) => {
-        // event.preventDefault()
-        addProduct(product, tienda);
-        return false;
-    }
-
-    return (<div className="commerce-card">
+  const handleOnClick = () => {
+      addProduct(product.codprod, product.imagen, product.nombre);
+  }
+    return(
+      <Popup trigger={<button className="btn btn-primary more-info-btn"> <FontAwesomeIcon icon={faInfo} /> </button>} modal>
         <img className="card-img-top"
             src={product.imagen}
             alt="Card image cap" />
@@ -33,11 +36,12 @@ export default function ProductCard({ product, tienda }) {
 
                         : <p className="precio-final">{product.precio}€</p>
                     }
+                  <p className="product-info">{product.descripcion}</p>
                 </div>
             </div>
-            <ProductPopUp product={product}/>
-            <a href="#" className="btn btn-primary add-product-btn"
+            <a href="#" className="btn btn-primary"
                 onClick={handleOnClick}>Añadir</a>
         </div>
-    </div>);
+      </Popup>
+    );
 }

@@ -1,0 +1,31 @@
+.precio {
+    display: flex;
+    flex-flow: row;
+    text-align: center;
+    align-items: baseline;
+}
+
+.precio-ant-descuento {
+    text-decoration: line-through;
+    color: gray;
+    margin-right: 15px;
+}
+
+.precio-con-descuento {
+    color: black;
+    margin-right: 8px;
+}
+
+.precio-final {
+    color: black;
+    font-size: 25px;
+}
+
+.descuento {
+    color: green;
+}
+
+.add-product-btn{
+    width: 90%;
+    margin: 15px;
+}

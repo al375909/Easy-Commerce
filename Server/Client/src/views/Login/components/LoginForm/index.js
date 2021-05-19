@@ -18,7 +18,7 @@ export default function LoginForm({goHome}) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
-    const {user, setUser,login} = useContext(SessionContext);
+    const {user, setUser, login} = useContext(SessionContext);
 
 
     const handleSubmit = async (event) => {
@@ -31,52 +31,51 @@ export default function LoginForm({goHome}) {
         // actualizamos el storage para persistencia ante refresh de la pagina
         localStorage.clear()
 
-        const formUser = {password:password,username:userName}
-        await login(formUser);
-        
-        goHome()
+        const formUser = {
+            password: password,
+            username: userName
+        }
 
+        await login(formUser);
+
+        goHome()
 
     }
 
 
-    return (
-
-        <div className="container">
-            <form>
-                <div className="form-group">
-                    <label>Usuario</label>
-                    <input className="form-control"
-                        value={userName}
-                        onChange={
-                            event => {
-                                setUserName(event.target.value)
-                            }
+    return (<div className="container">
+        <form>
+            <div className="form-group">
+                <label>Usuario</label>
+                <input className="form-control"
+                    value={userName}
+                    onChange={
+                        event => {
+                            setUserName(event.target.value)
                         }
-                        placeholder="Username"/>
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div className="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" className="form-control"
-                        value={password}
-                        onChange={
-                            event => {
-                                setPassword(event.target.value)
-                            }
+                    }
+                    placeholder="Username"/>
+                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div className="form-group">
+                <label>Contraseña</label>
+                <input type="password" className="form-control"
+                    value={password}
+                    onChange={
+                        event => {
+                            setPassword(event.target.value)
                         }
-                        placeholder="Password"/>
-                </div>
+                    }
+                    placeholder="Password"/>
+            </div>
 
-            <p className="singup">Registrate
-                <Link to="/signup">aquí</Link>
-            </p>
-            <button type="submit" className="btn btn-primary"
-                onClick={handleSubmit}>Submit</button>
+        <p className="singup">Registrate
+            <Link to="/signup">aquí</Link>
+        </p>
+        <button type="submit" className="btn btn-primary"
+            onClick={handleSubmit}>Submit</button>
 
-        </form>
-    </div>
-
-    );
+    </form>
+</div>);
 
 }
