@@ -24,44 +24,61 @@ export default function SessionProvider({ children }) {
         console.log(data.data)
         if (data.status != 401) {
             setUser(data.data);
-            await localStorage.setItem('user', JSON.stringify(data.data));
+            localStorage.setItem('user', JSON.stringify(data.data));
         }
 
     }
 
-    const addProduct = async (productId, img, name) => {
-        console.log("Session Provider -> AddProduct ", productId);
-        console.log("Current userProducts: ", userProducts);
-
-        let product = userProducts.get(productId);
-        console.log("Product: ", product)
-
-        if (!product) {
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: 1 }))
+    const addProduct = (productObj, shopID) => {
+        console.log("Session Provider -> AddProduct ", productObj);
+        // Check if shop exist:
+        let products = userProducts.get(shopID);
+        if (!products) {
+            setUserProducts(userProducts.set(shopID, [{ product: productObj, amount: 1 }]))
         } else {
-            let currentAmount = userProducts.get(productId).amount;
-            await setUserProducts(userProducts.set(productId, { productName: name, productImg: img, amount: currentAmount + 1 }))
+            // Check if the shop constains the product
+            let productID = productObj.codprod;
+            let productInf = products.filter(productInf => productInf.product.codprod == productID);
+
+            // if the product is new:
+            if (productInf.length == 0) {
+                // Update the products array with the new one.
+                products.push({ product: productObj, amount: 1 });
+                setUserProducts(userProducts.set(shopID, products));
+
+            } else {
+                // Update the amount of the product
+                let currentAmount = productInf[0].amount;
+                const newProducts = products.filter(productInf => productInf.product.codprod != productID);
+                let updatedProduct = { product: productObj, amount: currentAmount + 1 }
+                newProducts.push(updatedProduct);
+                setUserProducts(userProducts.set(shopID, newProducts));
+            }
         }
 
-        //First item added
-        // if (!product || product == null) {
-        //     // add product 
-        //     await setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: 1 }]]))
-        // } else {
-        //     // update amount
-        //     let currentAmount = userProducts.get(productId).amount;
-        //     await setUserProducts(prev => new Map([...prev, [productId, { productName: name, productImg: img, amount: currentAmount + 1 }]]))
-        // }
-
-        console.log("Updated userProducts: ", userProducts);
         // update localStorage
         localStorage.setItem('productMap', JSON.stringify(Array.from(userProducts)));
+    }
 
+    const deleteProduct = (shopID, productID) => {
+        let newMap = new Map(userProducts)
+
+        let products = newMap.get(shopID);
+        const newProducts = products.filter(productInf => productInf.product.codprod != productID);
+
+        if (newProducts.length == 0) {
+            newMap.delete(shopID)
+        } else {
+            newMap.set(shopID, newProducts)
+        }
+        setUserProducts(newMap);
+
+        localStorage.setItem('productMap', JSON.stringify(Array.from(newMap)));
     }
 
 
     return (
-        <SessionContext.Provider value={{ user, setUser, userProducts, setUserProducts, addProduct, login }}>
+        <SessionContext.Provider value={{ user, setUser, userProducts, setUserProducts, addProduct, deleteProduct, login }}>
             {children}
         </SessionContext.Provider>
     );

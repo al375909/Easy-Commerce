@@ -4,13 +4,14 @@ import { useContext, useState } from "react";
 import "./style.css"
 import ProductPopUp from "../ProductPopUp";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, tienda }) {
 
     const { userProducts, addProduct } = useContext(SessionContext);
 
     const handleOnClick = (event) => {
-        addProduct(product.codprod, product.imagen, product.nombre);
-        event.preventDefault()
+        // event.preventDefault()
+        addProduct(product, tienda);
+        return false;
     }
 
     return (<div className="commerce-card">

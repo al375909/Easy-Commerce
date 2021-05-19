@@ -23,11 +23,13 @@ export default function ProductList({ match }) {
 
     let { id } = match.params;
     const username = id
-
+    let nombreTienda;
     let commerceScope = null;
     Array.from(datos).map((commerce) => {
+        // console.log("commerce", commerce);
         if (commerce.username == id) {
             commerceScope = commerce;
+            nombreTienda = commerce.nombretienda;
         }
     })
 
@@ -43,8 +45,7 @@ export default function ProductList({ match }) {
                     <img alt='' src={commerceScope.imagen} />
                     <h1>{commerceScope.username}</h1>
                 </div>
-                <Products products={products}></Products>
-                
+                <Products products={products} tienda={nombreTienda}></Products>
             </div>
             <AddProductPopUp/>
         </div>);
