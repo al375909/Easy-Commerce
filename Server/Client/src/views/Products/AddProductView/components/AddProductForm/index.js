@@ -5,6 +5,7 @@ import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import { getDroppedOrSelectedFiles } from 'html5-file-selector'
 import SessionContext from "../../../../../context/session";
+import { Link } from "react-router-dom";
 
 export default function AddProductForm(){
     
@@ -27,7 +28,7 @@ export default function AddProductForm(){
         })
       }
 
-    const handleFormSubmit  = async () => {
+    const handleFormSubmit  = async (event) => {
         let myForm = document.getElementById('addProductForm');
         let formData = new FormData(myForm);    
         console.log("FORM", formData);
@@ -45,6 +46,7 @@ export default function AddProductForm(){
         .then(res => {
             console.log("Producto enviado al back-end");
         })
+        event.preventDefault();
     }
 
       const getFilesFromEvent = async (e) => {
@@ -67,7 +69,7 @@ export default function AddProductForm(){
                 <br/>
                 <h2 className="card-title">Añadir un nuevo producto</h2>
                 <br/>
-                <form onSubmit={handleFormSubmit} name="addProductForm" id="addProductForm">
+                <form /*onSubmit={handleFormSubmit}*/ name="addProductForm" id="addProductForm">
                     <div class="form-group">
                         <label for="inputNomProd" class="form-label">Nombre del producto</label>
                         <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Por ejemplo: Lata de Sardinas" maxlength="50" required/>
@@ -110,10 +112,9 @@ export default function AddProductForm(){
                         </div>
                         
                         <div class="col-6">
-                            <button type="submit" class="btn btn-success float-right">Subir artículo</button>
-                        </div>
-                        <div className="col">
-                            <button type="button" className="btn btn-success float-right">Subir artículo</button>
+                        <Link to="/">
+                        <button type="button" onClick={handleFormSubmit} class="btn btn-success float-right">Subir artículo</button>
+                        </Link>
                         </div>
                         
                     </div>
