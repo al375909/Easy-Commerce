@@ -27,7 +27,7 @@ export default function Home() {
         <div>
             <Header/>
             <Commerces datos={datos}/>
-            {/* <AddProductView/> Pablo la lio aqui, no tocar*/}
+            {/*<AddProductView/>*/}
         </div>
 
     );

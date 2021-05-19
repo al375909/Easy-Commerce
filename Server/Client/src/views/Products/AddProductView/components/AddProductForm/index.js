@@ -1,36 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import './style.css'
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import { getDroppedOrSelectedFiles } from 'html5-file-selector'
+import SessionContext from "../../../../../context/session";
+import { Link } from "react-router-dom";
 
 export default function AddProductForm(){
     
     const [file, setFile] = useState('');
+    const {user, setUser} = useContext(SessionContext);
 
     const date = new Date();
+    var imagen;
+    var archivo;
 
-      const handleSubmit = async (files, allFiles) => {
-          console.log(allFiles)
+      const uploadImage = async (file) => {
         const f = new FormData();
-        f.append("key", "893b927042e526398eb2aff94c2eeeb9");
-        f.append("image", allFiles[0].file);
-        f.append("name", date.toISOString());
-
+        f.append("key", "98dbdb8971adce611fe10bc7f5bb7b97");
+        f.append("image", file.fileObject);
         await axios.post("https://api.imgbb.com/1/upload", f)
             .then(resp => {
-                console.log(resp.data.data) // I'm aware it's data.data, that is how it returns stuff
-            })
+                console.log(resp.data.data);
+                imagen = resp.data.data; // I'm aware it's data.data, that is how it returns stuff
+                setFile(imagen.url);
+        })
       }
 
-      const getFilesFromEvent = e => {
+    const handleFormSubmit  = async (event) => {
+        let myForm = document.getElementById('addProductForm');
+        let formData = new FormData(myForm);    
+        console.log("FORM", formData);
+        console.log("Nom product", formData.get("inputNomProd"));
+        console.log("Imagen", imagen);
+        console.log("archivo", archivo);
+        await axios.post("/api/tiendas/products", {
+            nombre: formData.get("nombre"),
+            descripcion:  formData.get("descripcion"),
+            precio:  formData.get("precio"),
+            descuento:  formData.get("descuento"),
+            cantidad:  formData.get("cantidad"),
+            imagen: file,
+            commerceName: user.username})
+        .then(res => {
+            console.log("Producto enviado al back-end");
+        })
+        event.preventDefault();
+    }
+
+      const getFilesFromEvent = async (e) => {
         return new Promise(resolve => {
           getDroppedOrSelectedFiles(e).then(chosenFiles => {
             resolve(chosenFiles.map(f => f.fileObject))
             setFile(chosenFiles[0]);
-            console.log(file)
-            
+            uploadImage(chosenFiles[0]);
           })
         })
       }
@@ -39,43 +63,41 @@ export default function AddProductForm(){
     return(
 
         <>
-        <div className="card ">
-            <div className="card-body">
-                
-                
-                <div className="form-content my-2">
+        <div class="card ">
+            <div class="card-body">   
+                <div class="form-content my-2">
                 <br/>
                 <h2 className="card-title">Añadir un nuevo producto</h2>
                 <br/>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="inputNomProd" className="form-label">Nombre del producto</label>
-                        <input type="text" className="form-control" id="inputNomProd" placeholder="Por ejemplo: Lata de Sardinas" maxLength="50" required/>
+                <form /*onSubmit={handleFormSubmit}*/ name="addProductForm" id="addProductForm">
+                    <div class="form-group">
+                        <label for="inputNomProd" class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Por ejemplo: Lata de Sardinas" maxlength="50" required/>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="inputDescripcionProd" className="form-label">Descripción del producto</label>
-                        <textarea className="form-control" id="inputDescripcionProd" placeholder="Lata de sardina de alta calidad pescadas en el Mar Mediterráneo
-Peso escurrido: 250gr" maxLength="500" required></textarea>
+                    <div class="form-group">
+                        <label for="inputDescripcionProd" class="form-label">Descripción del producto</label>
+                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Lata de sardina de alta calidad pescadas en el Mar Mediterráneo
+                            Peso escurrido: 250gr" maxlength="500" required></textarea>
                     </div>
-                    <div className="form-row">
-                        <div className="form-group col-md-6">
-                            <label htmlFor="inputPrecio" className="form-label">Precio</label>
-                            <div className="input-group mb-3">
-                                <input type="number" className="form-control" id="inputPrecio" min="0" step="0.01" placeholder="Indique el precio por unidad" required/>
-                                <span className="input-group-text">€</span>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPrecio" class="form-label">Precio</label>
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control"  name="precio" id="precio" min="0" step="0.01" placeholder="Indique el precio por unidad" required/>
+                                <span class="input-group-text">€</span>
                             </div>
                         </div>
-                        <div className="form-group col-md-6">
-                            <label htmlFor="inputDescuento" className="form-label">Descuento</label>
-                            <div className="input-group mb-3">
-                                <input type="number" className="form-control" id="inputDescuento" min="0" max="100" placeholder="Indique el descuento del producto" required/>
-                                <span className="input-group-text">%</span>
+                        <div class="form-group col-md-6">
+                            <label for="inputDescuento" class="form-label">Descuento</label>
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control" name="descuento" id="descuento" min="0" max="100" placeholder="Indique el descuento del producto" required/>
+                                <span class="input-group-text">%</span>
                             </div>
                         </div>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="inputInvent" className="form-label">Inventario</label>
-                        <input type="number" className="form-control" id="inputInvent" placeholder="Indique el número de unidades" min="0" required/>
+                    <div class="form-group">
+                        <label for="inputInvent" class="form-label">Inventario</label>
+                        <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Indique el número de unidades" min="0" required/>
                     </div>
                     <div>
                         <div className="form-group dropbox">
@@ -89,12 +111,10 @@ Peso escurrido: 250gr" maxLength="500" required></textarea>
                             />
                         </div>
                         
-                        
-                        <div className="col">
-                            <button type="button" className="btn btn-danger float-left">Cancelar</button>                        
-                        </div>
-                        <div className="col">
-                            <button type="button" className="btn btn-success float-right">Subir artículo</button>
+                        <div class="col-6">
+                        <Link to="/">
+                        <button type="button" onClick={handleFormSubmit} class="btn btn-success float-right">Subir artículo</button>
+                        </Link>
                         </div>
                         
                     </div>

@@ -16,7 +16,15 @@ module.exports = {
                 email: req.body.email
             }
 
-            signupDao.createUser(newUser);
+            await signupDao.createUser(newUser);
+
+            /*const comprobacion = signupDao.getUser(newUser.username);
+            if(comprobacion.lenght === 0){
+                console.log("Putada");
+                res.send("Cagada bro");
+                return;
+            }*/
+
 
             newCommerce = {
                 username: req.body.username,
@@ -30,7 +38,7 @@ module.exports = {
             }
 
 
-            signupDao.createCommerce(newCommerce);
+            await signupDao.createCommerce(newCommerce);
             res.sendStatus(201);
 
         }
@@ -56,7 +64,7 @@ module.exports = {
                 direccion: req.body.direccion
             }
 
-            signupDao.createClient(newClient);
+            await signupDao.createClient(newClient);
 
             res.sendStatus(201);
         }
