@@ -1,0 +1,15 @@
+.new-product-btn{
+    width: 80px;
+    height: 80px;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-size: 30px;
+    line-height: 1.33;
+    margin-left: 13px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    position: fixed;
+    bottom: -4px;
+    right: 10px;
+}

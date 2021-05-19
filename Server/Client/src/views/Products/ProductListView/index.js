@@ -13,6 +13,7 @@ import TiendasContext from "../../../context/tiendas";
 import ProductsContext from "../../../context/products";
 
 import "./style.css"
+import AddProductPopUp from "./components/AddProductPopUp";
 
 
 export default function ProductList({ match }) {
@@ -46,6 +47,6 @@ export default function ProductList({ match }) {
                 </div>
                 <Products products={products} tienda={nombreTienda}></Products>
             </div>
-
+            <AddProductPopUp/>
         </div>);
 }

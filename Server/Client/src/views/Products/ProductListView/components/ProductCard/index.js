@@ -2,6 +2,7 @@ import SessionContext from "../../../../../context/session";
 import { useContext, useState } from "react";
 
 import "./style.css"
+import ProductPopUp from "../ProductPopUp";
 
 export default function ProductCard({ product, tienda }) {
 
@@ -34,10 +35,9 @@ export default function ProductCard({ product, tienda }) {
                     }
                 </div>
             </div>
-
-            {/* // TODO Evitar que al añadir producto la web haga scroll top */}
-            <a href="#" className="btn btn-primary" onClick={handleOnClick}>Añadir</a>
-
+            <ProductPopUp product={product}/>
+            <a href="#" className="btn btn-primary add-product-btn"
+                onClick={handleOnClick}>Añadir</a>
         </div>
     </div>);
 }
