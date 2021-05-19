@@ -37,6 +37,7 @@ module.exports = {
                         latitud: commerce[0].latitud,
                         imagen: commerce[0].imagen
                     }
+                    console.log(resultCommerce);
                     res.json(resultCommerce);
                     //res.sendStatus(200);
                 }else{
@@ -61,7 +62,7 @@ module.exports = {
                 }*/
             }
         }
-        res.send("USER_NOT_EXISTS");
+        //res.send("USER_NOT_EXISTS");
         return;
 
     }

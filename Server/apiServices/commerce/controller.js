@@ -40,7 +40,7 @@ module.exports = {
     res.send(list)
   },
   addProduct: async function(req, res) {
-    //commerce = req.body.commerceName;
+    const commerce = req.body.commerceName;
     const product = {
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
@@ -50,9 +50,7 @@ module.exports = {
       imagen: req.body.imagen,
     };
     console.log(product);
-    
-    const commerce = "PerasMaria";
-    // hacemos pequeñas comprobaciones
+        // hacemos pequeñas comprobaciones
     /*if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
       res.sendStatus(400);
     }else{*/

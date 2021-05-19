@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import './style.css'
 import 'react-dropzone-uploader/dist/styles.css'
 import Dropzone from 'react-dropzone-uploader'
 import { getDroppedOrSelectedFiles } from 'html5-file-selector'
+import SessionContext from "../../../../../context/session";
 
 export default function AddProductForm(){
     
     const [file, setFile] = useState('');
+    const {user, setUser} = useContext(SessionContext);
 
     const date = new Date();
     var imagen;
@@ -17,27 +19,12 @@ export default function AddProductForm(){
         const f = new FormData();
         f.append("key", "98dbdb8971adce611fe10bc7f5bb7b97");
         f.append("image", file.fileObject);
-        //f.append("name", date.toISOString());
-        console.log("Antes de hacer el post");
         await axios.post("https://api.imgbb.com/1/upload", f)
             .then(resp => {
                 console.log(resp.data.data);
                 imagen = resp.data.data; // I'm aware it's data.data, that is how it returns stuff
                 setFile(imagen.url);
         })
-        console.log("Despues de hacer el post");
-        console.log("imagen.url");
-        console.log(imagen.url);
-        console.log("archivo", archivo);
-        console.log(archivo);
-
-        if(typeof archivo !== "undefined"){
-            console.log("existe archivo");
-        }
-        else{
-            console.log("NOO existe archivo");
-        }
-
       }
 
     const handleFormSubmit  = async () => {
@@ -45,10 +32,6 @@ export default function AddProductForm(){
         let formData = new FormData(myForm);    
         console.log("FORM", formData);
         console.log("Nom product", formData.get("inputNomProd"));
-
-        if(typeof archivo !== "undefined"){
-            await uploadImage(archivo);
-        }
         console.log("Imagen", imagen);
         console.log("archivo", archivo);
         await axios.post("/api/tiendas/products", {
@@ -57,9 +40,10 @@ export default function AddProductForm(){
             precio:  formData.get("precio"),
             descuento:  formData.get("descuento"),
             cantidad:  formData.get("cantidad"),
-            imagen: file })
+            imagen: file,
+            commerceName: user.username})
         .then(res => {
-            console.log("Mira la base de datos porque parece que funciona ;)");
+            console.log("Producto enviado al back-end");
         })
     }
 
@@ -69,7 +53,7 @@ export default function AddProductForm(){
             resolve(chosenFiles.map(f => f.fileObject))
             setFile(chosenFiles[0]);
             uploadImage(chosenFiles[0]);
-          })//.then(val => uploadImage(val));
+          })
         })
       }
 
@@ -78,9 +62,7 @@ export default function AddProductForm(){
 
         <>
         <div class="card ">
-            <div class="card-body">
-                
-                
+            <div class="card-body">   
                 <div class="form-content my-2">
                 <br/>
                 <h2 class="card-title">Añadir un nuevo producto</h2>
