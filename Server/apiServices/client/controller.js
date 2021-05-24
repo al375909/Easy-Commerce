@@ -37,7 +37,8 @@ module.exports = {
          */
     },
     getOrders: async function(req, res){
-        clientModel.getOrders(req.query.username);
+        const orders = clientModel.listOrder(req.query.username);
+        res.send(orders);
     },
     getOrder: async function(req,  res){
         const id = req.query.orderId;

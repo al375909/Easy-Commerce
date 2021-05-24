@@ -31,5 +31,13 @@ const addItems = async (items) => {
         .catch(err => console.log("Error al añadir un item", err.stack));
 }
 
+
+const getOrderList = async (usernameClient) => {
+    const client = await pool.connect().catch(err => console.log('Error en la conexión de getOrderList', err.stack));
+    const list = await client.query()
+                    .catch(err=> console.log('Error al acceder a los pedidos de un cliente', err.stack));
+}
+
+
 module.exports.addOrder = addOrder;
 module.exports.getItem = getItem;

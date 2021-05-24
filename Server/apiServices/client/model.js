@@ -1,8 +1,8 @@
 const clientDao = require('./dao');
 
 module.exports = {
-    async listOrder() {
-
+    async listOrder(usernameClient) {
+        clientDao.getOrderList();
     },
 
     async getOrder(orderId){
