@@ -54,7 +54,30 @@
     border: 2px solid #a82525;
     border-radius: 10px;
     box-shadow: -3px 5px #a82525;
-    padding-left: 20px;
+    padding: 0px 24px;
+}
+
+.order-details .purchase-price {
+    padding: 0px 7%;
+}
+
+.price-per-shop p {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.price-per-shop li {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.total-price p {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.payment-method {
+    padding: 7%;
 }
 
 .payment-method .form {
@@ -62,7 +85,6 @@
     flex-flow: row;
     align-items: center;
     justify-content: space-around;
-    width: 70%;
 }
 
 .submit-order {
