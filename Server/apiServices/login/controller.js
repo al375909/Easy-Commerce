@@ -5,7 +5,6 @@ const passwordHandler = require('../../middleware/passwordHandler');
 module.exports = {
     async login(req, res) { // Recogemos el cliente
         const client = await loginDao.getClientUser(req.query.username);
-        console.log("Cliente --> ", req.query.username);
         // En caso de que exista ese cliente, comprobamos las credenciales
         if (client.length === 1) {
             console.log(client);
@@ -18,8 +17,10 @@ module.exports = {
                     direccion: client[0].direccion
                 }
                 res.send(resultClient);
+                return;
             }else{
                 res.send("WRONG_PASSWORD");
+                return;
             }
         } else { // Recogemos un comercio
             const commerce = await loginDao.getCommerceUser(req.query.username);
@@ -39,9 +40,11 @@ module.exports = {
                     }
                     console.log(resultCommerce);
                     res.json(resultCommerce);
+                    return;
                     //res.sendStatus(200);
                 }else{
                     res.send("WRONG_PASSWORD");
+                    return;
                 }
                 /*
                 console.log(authentication);
