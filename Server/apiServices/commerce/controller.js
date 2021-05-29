@@ -35,14 +35,13 @@ module.exports = {
     // FALTA COMPROBAR QUE ESTO ES ASÍ
     // (creo que no)
     console.log("Get Products")
-    console.log(req.body)
-    const list = await commerceModel.getProducts(req.body.username);
+    console.log(req.params)
+    const list = await commerceModel.getProducts(req.params.id);
     res.send(list)
   },
   addProduct: async function(req, res) {
-    console.log(req);
-    commerce = req.body.commerceName;
-    product = {
+    const commerce = req.body.commerceName;
+    const product = {
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
       precio: req.body.precio, 
@@ -51,13 +50,11 @@ module.exports = {
       imagen: req.body.imagen,
     };
     console.log(product);
-    
-
-    // hacemos pequeñas comprobaciones
+        // hacemos pequeñas comprobaciones
     /*if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
       res.sendStatus(400);
     }else{*/
-        const validate = await commerceModel.addProduct(product);
+        const validate = await commerceModel.addProduct(commerce, product);
         res.sendStatus(201);
     //  }
     }

@@ -1,20 +1,44 @@
+import SessionContext from "../../../../../context/session";
+import { useContext, useState } from "react";
 
-export default function ProductCard({imagen,nombre}){
+import "./style.css"
+import ProductPopUp from "../ProductPopUp";
+
+export default function ProductCard({ product, tienda }) {
+
+    const { userProducts, addProduct } = useContext(SessionContext);
+
+    const handleOnClick = (event) => {
+        // event.preventDefault()
+        addProduct(product, tienda);
+        return false;
+    }
 
 
-    return(
-        <div className="commerce-card">
+    return (<div className="commerce-card">
         <img className="card-img-top"
-            src={imagen}
-            alt="Card image cap"/>
+            src={product.imagen}
+            alt="Card image cap" />
         <div className="card-body">
             <div className="card-info">
-                <h5 className="card-title">
-                    {nombre}</h5>
-                <p className="card-text">cositas del producto B)</p>
+                <div className="top-side">
+                    <h5 className="card-title"> {product.nombre}</h5>
+                </div>
+                <div className="bottom-side">
+                    {product.descuento > 0 ?
+                        <div className="precio">
+                            <p className="precio-con-descuento precio-final">{(product.precio - (product.precio * product.descuento)).toFixed(2)}€</p>
+                            <p className="precio-ant-descuento">{product.precio}€</p>
+                            <p className="descuento">(-{product.descuento * 100}%)</p>
+                        </div>
+
+                        : <p className="precio-final">{product.precio}€</p>
+                    }
+                </div>
             </div>
-            <a href="#" className="btn btn-primary">Add</a>
+            <ProductPopUp product={product} tienda={tienda} />
+            <a href="#" className="btn btn-primary add-product-btn"
+                onClick={handleOnClick}>Añadir</a>
         </div>
-    </div>
-    );
+    </div>);
 }

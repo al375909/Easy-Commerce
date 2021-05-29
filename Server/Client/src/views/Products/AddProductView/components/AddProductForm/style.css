@@ -1,5 +1,5 @@
 .card{
-    width: 80%;
+    width: 100%;
     float: center;
 }
 
@@ -16,14 +16,19 @@
 }
 
 .btn-danger{
-    width: 50%;
+    width: 20%;
+    position: absolute;
+    left: 0px;
 }
 
 .btn-success{
-    width: 50%;
-    float: right;
+    width: 20%;
+    position: absolute;
+    right: 0px;
 }
 
 .dropbox{
     margin-bottom: 4rem;
+    
 }
+

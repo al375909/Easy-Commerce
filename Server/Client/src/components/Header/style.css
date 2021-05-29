@@ -1,9 +1,17 @@
 html, body {
     height: 100%;
-  }
-  
+}
 
-.burguer-menu {
+.sticky-header {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    top: 0;
+    background-color: rgb(255 255 255 / 90%) !important;
+}
+
+.burger-menu {
+    display: none;
     border-radius: 20%;
     border-color: rgb(197, 197, 197);
 }
@@ -16,17 +24,14 @@ html, body {
     width: 30%;
     height: 100%;
     z-index: 99;
-
-   
 }
 
-.left-menu.closed{
-    
+.left-menu.closed {
     animation-name: close;
     animation-duration: 1s;
 }
 
-.left-menu.open{
+.left-menu.open {
     left: 0;
     animation-name: open;
     animation-duration: 1s;
@@ -34,24 +39,17 @@ html, body {
 
 @keyframes open {
     0% {
-      left: -100%
+        left: -100%
     }
-    100% {
-        
-    }
+    100% {}
 }
 
-@keyframes close{
+@keyframes close {
     0% {
         left: 0;
-      }
-      100% {
-
-      }
-        
-      
+    }
+    100% {}
 }
-
 
 .navbar-brand img {
     height: 100px;
@@ -95,6 +93,84 @@ html, body {
 .cart {
     margin-top: 14px;
 }
+
+.cart-preview {
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.cart-preview.active {
+    z-index: 2;
+    display: block;
+    position: absolute;
+    top: 103px;
+    right: 30px;
+    width: 380px;
+    height: 420px;
+    box-shadow: 0 10px 20px rgb(0 0 0 / 19%), 0 6px 6px rgb(0 0 0 / 23%);
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.cart-preview.active .products {
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    border-bottom: 2px solid #a82525;
+}
+
+.cart-preview.active .product {
+    margin: 10px;
+    border: 2px solid #a82525;
+    border-radius: 10px;
+    box-shadow: -3px 5px #a82525;
+}
+
+.cart-preview.active .product .info {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin: 20px;
+}
+
+.cart-preview.active .product .info p {
+    font-weight: 300;
+    font-size: 18px;
+    margin: 0px !important;
+}
+
+.cart-preview.active .product img {
+    width: 33%;
+    flex: 4;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.cart-preview.active .product .name {
+    flex: 6;
+}
+
+.cart-preview.active .product .amount {
+    flex: 1;
+}
+
+.cart-preview.active .checkout {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-preview.active .checkout button {
+    width: 100%;
+}
+
+/* .cart-preview.active .product .endProduct {
+    border-bottom: 3px solid;
+    border-radius: 5px;
+} */
 
 /* User icon */
 
