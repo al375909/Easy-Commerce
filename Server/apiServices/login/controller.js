@@ -17,8 +17,10 @@ module.exports = {
                     direccion: client[0].direccion
                 }
                 res.send(resultClient);
+                return;
             }else{
                 res.send("WRONG_PASSWORD");
+                return;
             }
         } else { // Recogemos un comercio
             const commerce = await loginDao.getCommerceUser(req.query.username);
@@ -37,9 +39,11 @@ module.exports = {
                         imagen: commerce[0].imagen
                     }
                     res.json(resultCommerce);
+                    return;
                     //res.sendStatus(200);
                 }else{
                     res.send("WRONG_PASSWORD");
+                    return;
                 }
                 /*
                 console.log(authentication);

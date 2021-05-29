@@ -2,7 +2,8 @@ const clientDao = require('./dao');
 
 module.exports = {
     async listOrder(usernameClient) {
-        clientDao.getOrderList();
+        const list = await clientDao.getOrderList(usernameClient);
+        return list;
     },
 
     async getOrder(orderId){
@@ -13,8 +14,7 @@ module.exports = {
         // debemos de comprobar el metodo de pago,
         // debemos de comprobar si existen los items,
         // debemos de comprobar el cliente y el comercio
-        if(paymentMethod === "efectivo" | "tarjeta"){
-            console.log("Efectivo o tarjeta");
+        if(paymentMethod === "efectivo" || "tarjeta"){
             /*
             for(let item in items){
                 const existeItem = await clientDao.getItem(item.codprod, commerce);
@@ -23,12 +23,15 @@ module.exports = {
                 }
             }*/
             // Después de las comprobaciones añadimos el pedido
-            console.log("Commerce addOrder: ", commerce);
             const codped = await clientDao.addOrder(paymentMethod, client, commerce);
-            console.log("CODPED: ", codped);
-            return;
-            await clientDao.addItems(items);
-            return true;
+            if(codped >= 0){
+                if(!await clientDao.addItems(items, codped)){
+                    await clientDao.deleteOrder(codped);
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
     }
 }

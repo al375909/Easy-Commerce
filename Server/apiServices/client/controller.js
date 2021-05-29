@@ -11,13 +11,14 @@ module.exports = {
 
 
 
-        const prodArray = await clientModel.addOrder(clientName, commerceName, paymentMethod, items);
+        const inserted = await clientModel.addOrder(clientName, commerceName, paymentMethod, items);
         
-        if(!prodArray){
-            res.send("ERROR: PRODUCTO INEXISTENTE");
+        if(!inserted){
+            res.send("ERROR: PRODUCTO INEXISTENTE O DATOS NO CORRECTOS");
             return;
         }  
         res.sendStatus(201);
+        return;
         /**
          * 
          * {
@@ -37,7 +38,7 @@ module.exports = {
          */
     },
     getOrders: async function(req, res){
-        const orders = clientModel.listOrder(req.query.username);
+        const orders = await clientModel.listOrder(req.query.username);
         res.send(orders);
     },
     getOrder: async function(req,  res){
