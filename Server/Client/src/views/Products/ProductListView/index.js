@@ -26,22 +26,22 @@ export default function ProductList({ match }) {
     let { id } = match.params;
     const username = id
     let nombreTienda;
+    let usuarioTienda;
     let commerceScope = null;
     Array.from(datos).map((commerce) => {
         // console.log("commerce", commerce);
         if (commerce.username == id) {
             commerceScope = commerce;
             nombreTienda = commerce.nombretienda;
+            usuarioTienda = commerce.username;
         }
     })
 
     useEffect(async () => {
         await getCommerceProducts({ username })
     }, []);
+    
 
-    console.log("holaaa");
-    console.log(user.username);
-    console.log(username);
 
     return (
         <div>
@@ -49,11 +49,11 @@ export default function ProductList({ match }) {
             <div className="commerce-products space" >
                 <div className="commerce-info">
                     <img alt='' src={commerceScope.imagen} />
-                    <h1>{commerceScope.username}</h1>
+                    <h1>{nombreTienda}</h1>
                 </div>
-                <Products products={products} tienda={nombreTienda}></Products>
+                <Products products={products} tienda={nombreTienda} userTienda={usuarioTienda}></Products>
             </div>
-            {user.username == username ?  <AddProductPopUp/> : <></>}
+            {user.username == usuarioTienda ?  <AddProductPopUp/> : <></>}
             
         </div>);
 }

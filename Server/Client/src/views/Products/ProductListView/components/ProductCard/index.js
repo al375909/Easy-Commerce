@@ -3,17 +3,19 @@ import { useContext, useState } from "react";
 
 import "./style.css"
 import ProductPopUp from "../ProductPopUp";
+import ModifyProductPopUp from "../ModifyProductPopUp";
 
-export default function ProductCard({ product, tienda }) {
+export default function ProductCard({ product, tienda, userTienda }) {
 
     const { userProducts, addProduct } = useContext(SessionContext);
+    const {user, setUser} = useContext(SessionContext);
 
     const handleOnClick = (event) => {
         // event.preventDefault()
         addProduct(product, tienda);
         return false;
     }
-
+  
 
     return (<div className="commerce-card">
         <img className="card-img-top"
@@ -37,8 +39,20 @@ export default function ProductCard({ product, tienda }) {
                 </div>
             </div>
             <ProductPopUp product={product} tienda={tienda} />
+
+            {userTienda==user.username ? 
+            
+            <>
+                <ModifyProductPopUp product={product}/>
+                <a href="#" className="btn btn-danger delete-product-btn"
+                    onClick={handleOnClick}>Eliminar</a>
+            </> : 
+            
             <a href="#" className="btn btn-primary add-product-btn"
                 onClick={handleOnClick}>Añadir</a>
+                
+            }
+            
         </div>
     </div>);
 }
