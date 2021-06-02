@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import TiendasContext from "../../../context/tiendas";
 import ProductsContext from "../../../context/products";
+import SessionContext from "../../../context/session"
 
 import "./style.css"
 import AddProductPopUp from "./components/AddProductPopUp";
@@ -20,6 +21,7 @@ export default function ProductList({ match }) {
 
     const { products, getCommerceProducts } = useContext(ProductsContext)
     const { datos } = useContext(TiendasContext);
+    const {user, setUser} = useContext(SessionContext);
 
     let { id } = match.params;
     const username = id
@@ -37,6 +39,10 @@ export default function ProductList({ match }) {
         await getCommerceProducts({ username })
     }, []);
 
+    console.log("holaaa");
+    console.log(user.username);
+    console.log(username);
+
     return (
         <div>
             <Header></Header>
@@ -47,6 +53,7 @@ export default function ProductList({ match }) {
                 </div>
                 <Products products={products} tienda={nombreTienda}></Products>
             </div>
-            <AddProductPopUp/>
+            {user.username == username ?  <AddProductPopUp/> : <></>}
+            
         </div>);
 }
