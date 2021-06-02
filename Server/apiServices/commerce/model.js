@@ -38,9 +38,9 @@ module.exports = {
   //  TODOO: TERMINARLO BIEN Y HACER EL LOGIN (COMO MINIMO)
   async addProduct(commerce, product){
     // comprobamos que exista el comercio
-
-    if(commerceDao.getCommerce(commerce)){ // si existe el comercio al que asignar el producto
-      const product = commerceDao.addProduct(commerce, product);
+    const tam = await commerceDao.getCommerce(commerce);
+    if (tam.length>0){ // si existe el comercio al que asignar el producto
+      product = await commerceDao.addProductToCatalog(commerce, product);
     }
   }
 };

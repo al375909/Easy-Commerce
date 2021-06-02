@@ -3,9 +3,9 @@ const passwordHandler = require('../../middleware/passwordHandler');
 
 
 module.exports = {
-    signupCommerce: async function (req, res) {
-        const commerce = signupDao.getCommerceUser(req.body.username);
-        if (commerce.lenght > 0) { // Si existe algún usuario con ese nombre, no debemos dejar que se cree.
+    signupCommerce: async function(req, res){
+        const commerce = await signupDao.getCommerceUser(req.body.username);
+        if(commerce.lenght > 0){ // Si existe algún usuario con ese nombre, no debemos dejar que se cree.
             res.send(400);
         } else {
             newUser = {
@@ -16,7 +16,15 @@ module.exports = {
                 email: req.body.email
             }
 
-            signupDao.createUser(newUser);
+            await signupDao.createUser(newUser);
+
+            /*const comprobacion = signupDao.getUser(newUser.username);
+            if(comprobacion.lenght === 0){
+                console.log("Putada");
+                res.send("Cagada bro");
+                return;
+            }*/
+
 
             newCommerce = {
                 username: req.body.username,
@@ -30,14 +38,14 @@ module.exports = {
             }
 
 
-            signupDao.createCommerce(newCommerce);
+            await signupDao.createCommerce(newCommerce);
             res.sendStatus(201);
 
         }
     },
-    signupClient: async function (req, res) {
-        const client = signupDao.getClientUser(req.body.username);
-        if (client.lenght > 0) {
+    signupClient: async function(req, res){
+        const client = await signupDao.getClientUser(req.body.username);
+        if(client.lenght > 0){
             res.send(400);
         } else {
             newUser = {
@@ -47,8 +55,15 @@ module.exports = {
                 apellidos: req.body.apellidos,
                 email: req.body.email
             }
-            signupDao.createUser(newUser);
+            await signupDao.createUser(newUser);
 
+            /*const comprobacion = await signupDao.getUser(newUser.username);
+
+            console.log(comprobacion);
+            if(comprobacion.lenght === 0){
+                res.sendStatus(500);
+                return;
+            }*/
 
             newClient = {
                 username: req.body.username,
@@ -56,7 +71,7 @@ module.exports = {
                 direccion: req.body.direccion
             }
 
-            signupDao.createClient(newClient);
+            await signupDao.createClient(newClient);
 
             res.sendStatus(201);
         }

@@ -15,12 +15,7 @@ export default function SessionProvider({ children }) {
     const login = async (userObject) => {
 
         console.log("entra en axios login")
-        const data = await axios.get(`/api/login`, {
-            params: {
-                username: userObject.username,
-                password: userObject.password
-            }
-        });
+        const data = await axios.get(`/api/login`,{ params: { username:userObject.username,passwd:userObject.password }});
         console.log(data.data)
         if (data.status != 401) {
             setUser(data.data);

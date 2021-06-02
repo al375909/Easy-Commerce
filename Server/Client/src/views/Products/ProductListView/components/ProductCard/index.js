@@ -14,6 +14,7 @@ export default function ProductCard({ product, tienda }) {
         return false;
     }
 
+
     return (<div className="commerce-card">
         <img className="card-img-top"
             src={product.imagen}
@@ -35,8 +36,7 @@ export default function ProductCard({ product, tienda }) {
                     }
                 </div>
             </div>
-            <ProductPopUp product={product}/>
-            {tienda.username == SessionContext.}
+            <ProductPopUp product={product} tienda={tienda} />
             <a href="#" className="btn btn-primary add-product-btn"
                 onClick={handleOnClick}>Añadir</a>
         </div>
