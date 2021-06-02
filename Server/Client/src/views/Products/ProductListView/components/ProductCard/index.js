@@ -36,6 +36,7 @@ export default function ProductCard({ product, tienda }) {
                 </div>
             </div>
             <ProductPopUp product={product}/>
+            {tienda.username == SessionContext.}
             <a href="#" className="btn btn-primary add-product-btn"
                 onClick={handleOnClick}>Añadir</a>
         </div>
