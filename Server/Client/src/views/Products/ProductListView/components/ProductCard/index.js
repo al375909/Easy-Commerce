@@ -1,6 +1,6 @@
 import SessionContext from "../../../../../context/session";
 import { useContext, useState } from "react";
-
+import axios from 'axios';
 import "./style.css"
 import ProductPopUp from "../ProductPopUp";
 import ModifyProductPopUp from "../ModifyProductPopUp";
@@ -14,7 +14,19 @@ export default function ProductCard({ product, tienda, userTienda }) {
         // event.preventDefault()
         addProduct(product, tienda);
         return false;
-    }
+    };
+
+    const handleOnClickDelete = async (event) => {
+        console.log("Entrada 1");
+
+        await axios.post("/api/tiendas/deleteProduct", {
+            commerceName: userTienda,
+            codProd:product.codprod
+        })
+        .then(res => {
+            console.log("Producto eliminado");
+        })
+    };
   
 
     return (<div className="commerce-card">
@@ -38,14 +50,14 @@ export default function ProductCard({ product, tienda, userTienda }) {
                     }
                 </div>
             </div>
-            <ProductPopUp product={product} tienda={tienda} />
+            <ProductPopUp product={product} tienda={tienda} userTienda={userTienda} />
 
             {userTienda==user.username ? 
             
             <>
                 <ModifyProductPopUp product={product}/>
-                <a href="#" className="btn btn-danger delete-product-btn"
-                    onClick={handleOnClick}>Eliminar</a>
+                <a href="/" className="btn btn-danger delete-product-btn"
+                    onClick={handleOnClickDelete}>Eliminar</a>
             </> : 
             
             <a href="#" className="btn btn-primary add-product-btn"

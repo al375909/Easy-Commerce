@@ -40,7 +40,7 @@ module.exports = {
       precio: req.body.precio, 
       descuento: req.body.descuento,
       cantidad: req.body.cantidad,
-      imagen: req.body.imagen,
+      //imagen: req.body.imagen,
     };
     const validate = await commerceModel.updateProduct(product);
     res.sendStatus(201);
@@ -72,6 +72,7 @@ module.exports = {
   deleteProduct: async function(req, res) {
     const commerceName = req.body.commerceName;
     const codProd = req.body.codProd;
+    console.log("nombre comercio y codprod", commerceName, codProd);
 
     const validate = await commerceModel.deleteProduct(commerceName, codProd);
     res.sendStatus(201);

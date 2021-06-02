@@ -60,7 +60,7 @@ const addProductToCatalog = async (commerce, product) => {
     const client = await pool.connect();
 
     const productReturn = await client.query('INSERT INTO producto (nombre, descripcion, precio, descuento, cantidad, imagen) VALUES($1, $2, $3, $4, $5, $6) returning(codProd);',
-    [product.nombre, product.descripcion, product.precio, product.descuento, product.cantidad, product.imagen])
+    [product.nombre, product.descripcion, product.precio, product.descuento/100, product.cantidad, product.imagen])
     .catch(err => console.log("Error al insertar un producto ", err.stack));
 
     //console.log("este es mi CODPROD", productReturn.rows[0].codprod);
@@ -92,8 +92,8 @@ const updateProduct = async (product) => {
     console.log(product.nombre);
 
     const client = await pool.connect();
-    await client.query('UPDATE producto SET nombre = $1, descripcion = $2, precio = $3, descuento = $4, cantidad = $5, imagen = $6 WHERE codprod = $7;',
-    [product.nombre, product.descripcion, product.precio, product.descuento, product.cantidad, product.imagen, product.codprod])
+    await client.query('UPDATE producto SET nombre = $1, descripcion = $2, precio = $3, descuento = $4, cantidad = $5 WHERE codprod = $6;',
+    [product.nombre, product.descripcion, product.precio, product.descuento/100, product.cantidad, product.codprod])
     .catch(err => console.log("Error al actualizar un producto ", err.stack));
     client.release();
     return;
