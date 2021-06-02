@@ -35,7 +35,7 @@ export default function AddProductForm(){
         console.log("Nom product", formData.get("inputNomProd"));
         console.log("Imagen", imagen);
         console.log("archivo", archivo);
-        await axios.post("/api/tiendas/products", {
+        await axios.post("/api/tiendas/addProduct", {
             nombre: formData.get("nombre"),
             descripcion:  formData.get("descripcion"),
             precio:  formData.get("precio"),
