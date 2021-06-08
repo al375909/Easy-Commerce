@@ -43,7 +43,7 @@ export default function ProductPopUp({ product, tienda, userTienda }) {
             <p className="product-info">{product.descripcion}</p>
           </div>
         </div>
-        {userTienda==user.username ? 
+        { user && userTienda==user.username ? 
             <>
             </> : 
             

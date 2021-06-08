@@ -29,7 +29,7 @@ export default function ProductList({ match }) {
     let usuarioTienda;
     let commerceScope = null;
     Array.from(datos).map((commerce) => {
-        // console.log("commerce", commerce);
+         console.log("commerce", commerce);
         if (commerce.username == id) {
             commerceScope = commerce;
             nombreTienda = commerce.nombretienda;
@@ -53,7 +53,10 @@ export default function ProductList({ match }) {
                 </div>
                 <Products products={products} tienda={nombreTienda} userTienda={usuarioTienda}></Products>
             </div>
-            {user.username == usuarioTienda ?  <AddProductPopUp/> : <></>}
+            
+            { user && user.username == usuarioTienda ?  <AddProductPopUp/> : <></>}
+           
+
             
         </div>);
 }

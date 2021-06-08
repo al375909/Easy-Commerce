@@ -52,7 +52,7 @@ export default function ProductCard({ product, tienda, userTienda }) {
             </div>
             <ProductPopUp product={product} tienda={tienda} userTienda={userTienda} />
 
-            {userTienda==user.username ? 
+            {user && userTienda==user.username ? 
             
             <>
                 <ModifyProductPopUp product={product}/>
