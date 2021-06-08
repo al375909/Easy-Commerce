@@ -75,7 +75,11 @@ export default function Header(props) {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Mis pedidos</a>
+                        {user ?
+                            <Link to="/orders">
+                                <a className="nav-link" >Mis pedidos</a>
+                            </Link> : <></>}
+
                     </li>
                 </ul>
             </div>

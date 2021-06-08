@@ -1,20 +1,21 @@
-import {BrowserRouter as Router, Route, Switch,useLocation, useHistory} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useLocation, useHistory } from "react-router-dom";
 import Home from "../views/Home";
 import Login from "../views/Login";
 import Signup from "../views/Signup"
 import ProductList from "../views/Products/ProductListView";
 import ProductsProvider from "../context/products/Provider";
 import Checkout from "../views/ShoppingCart";
+import Orders from "../views/Orders";
 
 export default function Routes() {
 
-    
-    
+
+
     return (
         <Router>
             <Switch>
                 <Route path="/" exact>
-                    <Home/>
+                    <Home />
                 </Route>
 
                 <Route path="/login" component={Login} exact>
@@ -22,21 +23,19 @@ export default function Routes() {
 
                 <Route path="/signup" component={Signup} exact>
                 </Route>
-                
-                <Route path="/:id/products"  render={({ match }) =>
+
+                <Route path="/:id/products" render={({ match }) =>
                     <ProductsProvider>
                         <ProductList match={match} />
                     </ProductsProvider>}
-                exact>  
+                    exact>
                 </Route>
 
                 <Route path="/checkout" component={Checkout} exact>
                 </Route>
 
-
-                
-
-                
+                <Route path="/orders" component={Orders} exact>
+                </Route>
 
             </Switch>
         </Router>

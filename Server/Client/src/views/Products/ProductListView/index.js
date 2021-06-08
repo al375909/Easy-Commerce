@@ -21,7 +21,7 @@ export default function ProductList({ match }) {
 
     const { products, getCommerceProducts } = useContext(ProductsContext)
     const { datos } = useContext(TiendasContext);
-    const {user, setUser} = useContext(SessionContext);
+    const { user, setUser } = useContext(SessionContext);
 
     let { id } = match.params;
     const username = id
@@ -29,7 +29,7 @@ export default function ProductList({ match }) {
     let usuarioTienda;
     let commerceScope = null;
     Array.from(datos).map((commerce) => {
-         console.log("commerce", commerce);
+        console.log("commerce", commerce);
         if (commerce.username == id) {
             commerceScope = commerce;
             nombreTienda = commerce.nombretienda;
@@ -40,23 +40,25 @@ export default function ProductList({ match }) {
     useEffect(async () => {
         await getCommerceProducts({ username })
     }, []);
-    
+
 
 
     return (
         <div>
             <Header></Header>
             <div className="commerce-products space" >
-                <div className="commerce-info">
-                    <img alt='' src={commerceScope.imagen} />
-                    <h1>{nombreTienda}</h1>
+                <div className="commerce-info" style={{ backgroundImage: `url(${commerceScope.imagen})` }}>
+                    {/* <img alt='' src={commerceScope.imagen} /> */}
+                    <h1>{commerceScope.username}</h1>
                 </div>
                 <Products products={products} tienda={nombreTienda} userTienda={usuarioTienda}></Products>
             </div>
-            
-            { user && user.username == usuarioTienda ?  <AddProductPopUp/> : <></>}
-           
 
-            
+
+
+            { user && user.username == usuarioTienda ? <AddProductPopUp /> : <></>}
+
+
+
         </div>);
 }
