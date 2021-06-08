@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import Popup from 'reactjs-popup';
 import SessionContext from "../../../../context/session";
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ export default function PurchasePayment({ totalCost }) {
 
     const sendPurchase = async (purchase) => {
 
-        const res = await axios.post(`/api/client/order/`, purchase);
+        const res = await axios.post(`/api/client/order`, purchase);
 
         if (res.status == 201)
             return true;
@@ -30,7 +31,7 @@ export default function PurchasePayment({ totalCost }) {
 
     const onPurchase = () => {
 
-        Array.from(userProducts).map( async ([key, val]) => {
+        Array.from(userProducts).map(async ([key, val]) => {
             var obj = {
                 client: user.username,
                 paymentMethod: payment,
@@ -43,10 +44,9 @@ export default function PurchasePayment({ totalCost }) {
                     return res;
                 })
             }
-           await sendPurchase(obj)
-               
-        });
+            await sendPurchase(obj)
 
+        });
 
     }
 
