@@ -1,7 +1,7 @@
 const clientModel = require("./model");
 
 module.exports = {
-    addOrder: async function(req, res) {
+    addOrder: async function (req, res) {
         const paymentMethod = req.body.paymentMethod;
         const commerceName = req.body.commerce;
         const clientName = req.body.client;
@@ -12,11 +12,11 @@ module.exports = {
 
 
         const inserted = await clientModel.addOrder(clientName, commerceName, paymentMethod, items);
-        
-        if(!inserted){
+
+        if (!inserted) {
             res.send("ERROR: PRODUCTO INEXISTENTE O DATOS NO CORRECTOS");
             return;
-        }  
+        }
         res.sendStatus(201);
         return;
         /**
@@ -37,11 +37,12 @@ module.exports = {
          * 
          */
     },
-    getOrders: async function(req, res){
-        const orders = await clientModel.listOrder(req.query.username);
+    getOrders: async function (req, res) {
+
+        const orders = await clientModel.listOrder(req.query.username, req.query.type);
         res.send(orders);
     },
-    getOrder: async function(req,  res){
+    getOrder: async function (req, res) {
         const id = req.query.orderId;
     }
 }

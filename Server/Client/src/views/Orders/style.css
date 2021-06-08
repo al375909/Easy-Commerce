@@ -1,0 +1,44 @@
+.orders-container {
+    display: flex;
+    flex-flow: column;
+    margin: 10% 10%;
+}
+
+.order-list-container {
+    display: flex;
+    flex-flow: column !important;
+}
+
+.orders-wrapper {
+    display: flex;
+    flex-flow: column;
+}
+
+.order-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-item {
+    display: flex;
+    flex-flow: row;
+    text-align: center;
+    border: 2px solid #a82525;
+    border-radius: 10px;
+    box-shadow: -3px 5px #a82525;
+    margin: 2% 14%;
+}
+
+.order-item>div {
+    flex: 1;
+    padding: 2%;
+}
+
+.order-item .tienda-info img {
+    width: 100%;
+}
+
+.border-column h6 {
+    border-bottom: 1.9px solid #a82525;
+}
