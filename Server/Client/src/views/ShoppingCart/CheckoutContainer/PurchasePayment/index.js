@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import SessionContext from "../../../../context/session";
+import axios from 'axios';
 
 
 export default function PurchasePayment({ totalCost }) {
-    const { userProducts, deleteProduct } = useContext(SessionContext);
+    const { user, userProducts, deleteProduct } = useContext(SessionContext);
 
     const [payment, setPayment] = useState("Ninguno");
 
@@ -16,6 +17,38 @@ export default function PurchasePayment({ totalCost }) {
         return totalAmount;
     };
 
+    const sendPurchase = async (purchase) => {
+
+        const res = await axios.post(`/api/client/order/`, purchase);
+
+        if (res.status == 201)
+            return true;
+        else
+            return false;
+
+    }
+
+    const onPurchase = () => {
+
+        Array.from(userProducts).map( async ([key, val]) => {
+            var obj = {
+                client: user.username,
+                paymentMethod: payment,
+                commerce: val[0].product.username,
+                products: val.map(elem => {
+                    var res = {
+                        codprod: elem.product.codprod,
+                        amount: elem.amount
+                    }
+                    return res;
+                })
+            }
+           await sendPurchase(obj)
+               
+        });
+
+
+    }
 
     return (
         <div className="purchase-payment-container">
@@ -42,16 +75,16 @@ export default function PurchasePayment({ totalCost }) {
 
                 <div className="payment-method">
                     <div className="form" onChange={(event) => { setPayment(event.target.value) }}>
-                        <input type="radio" value="Efectivo" name="paymentMethod" /> Efectivo
-                        <input type="radio" value="Tarjeta" name="paymentMethod" /> Tarjeta
-                        <input type="radio" value="Cupones" name="paymentMethod" /> Cupones
+                        <input type="radio" value="efectivo" name="paymentMethod" /> Efectivo
+                        <input type="radio" value="tarjeta" name="paymentMethod" /> Tarjeta
+                        <input type="radio" value="cupones" name="paymentMethod" /> Cupones
                     </div>
 
                     <p>Método de pago seleccionado: {payment}</p>
                 </div>
 
                 <div className="submit-order">
-                    <button className="btn btn-primary">Confirmar pedido</button>
+                    <button className="btn btn-primary" onClick={onPurchase}>Confirmar pedido</button>
                 </div>
             </div>
 

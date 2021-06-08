@@ -14,7 +14,7 @@ module.exports = {
         // debemos de comprobar el metodo de pago,
         // debemos de comprobar si existen los items,
         // debemos de comprobar el cliente y el comercio
-        if(paymentMethod === "efectivo" || "tarjeta"){
+        if(paymentMethod === "efectivo" || paymentMethod === "tarjeta"){
             /*
             for(let item in items){
                 const existeItem = await clientDao.getItem(item.codprod, commerce);
