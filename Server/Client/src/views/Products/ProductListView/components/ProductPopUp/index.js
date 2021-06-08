@@ -9,9 +9,10 @@ import "./style.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfo } from '@fortawesome/free-solid-svg-icons'
 
-export default function ProductPopUp({ product, tienda }) {
+export default function ProductPopUp({ product, tienda, userTienda }) {
 
   const { userProducts, addProduct } = useContext(SessionContext);
+  const {user, setUser} = useContext(SessionContext);
 
   const handleOnClick = () => {
     addProduct(product, tienda);
@@ -41,8 +42,13 @@ export default function ProductPopUp({ product, tienda }) {
             <p className="product-info">{product.descripcion}</p>
           </div>
         </div>
-        <a href="#" className="btn btn-primary"
-          onClick={handleOnClick}>Añadir</a>
+        { user && userTienda==user.username ? 
+            <>
+            </> : 
+            
+            <a href="#" className="btn btn-primary add-product-btn"
+                onClick={handleOnClick}>Añadir</a> 
+            }
       </div>
     </Popup>
   );

@@ -29,3 +29,12 @@
     width: 90%;
     margin: 15px;
 }
+
+
+.delete-product-btn{
+    width: 90%;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
