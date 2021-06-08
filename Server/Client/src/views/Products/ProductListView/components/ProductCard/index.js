@@ -16,9 +16,7 @@ export default function ProductCard({ product, tienda }) {
 
 
     return (<div className="commerce-card">
-        <img className="card-img-top"
-            src={product.imagen}
-            alt="Card image cap" />
+        <img className="card-img-top" src={product.imagen} alt="Card image cap" />
         <div className="card-body">
             <div className="card-info">
                 <div className="top-side">

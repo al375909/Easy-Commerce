@@ -41,12 +41,12 @@ export default function ProductList({ match }) {
         <div>
             <Header></Header>
             <div className="commerce-products space" >
-                <div className="commerce-info">
-                    <img alt='' src={commerceScope.imagen} />
+                <div className="commerce-info" style={{ backgroundImage: `url(${commerceScope.imagen})` }}>
+                    {/* <img alt='' src={commerceScope.imagen} /> */}
                     <h1>{commerceScope.username}</h1>
                 </div>
                 <Products products={products} tienda={nombreTienda}></Products>
             </div>
-            <AddProductPopUp/>
+            <AddProductPopUp />
         </div>);
 }

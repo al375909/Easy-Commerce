@@ -14,7 +14,6 @@ export default function ProductPopUp({ product, tienda }) {
   const { userProducts, addProduct } = useContext(SessionContext);
 
   const handleOnClick = () => {
-    console.log("product", product)
     addProduct(product, tienda);
   }
 
