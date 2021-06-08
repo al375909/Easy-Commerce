@@ -31,6 +31,21 @@ module.exports = {
       failureMessage: res.sendStatus(400), // Usuario no identificado
     });*/
   },
+
+  updateProduct: async function(req, res) {
+    const product = {
+      codprod: req.body.codprod,
+      nombre: req.body.nombre,
+      descripcion: req.body.descripcion,
+      precio: req.body.precio, 
+      descuento: req.body.descuento,
+      cantidad: req.body.cantidad,
+      //imagen: req.body.imagen,
+    };
+    const validate = await commerceModel.updateProduct(product);
+    res.sendStatus(201);
+  },
+
   getProducts: async function(req, res) {
     // FALTA COMPROBAR QUE ESTO ES ASÍ
     // (creo que no)
@@ -39,10 +54,10 @@ module.exports = {
     const list = await commerceModel.getProducts(req.params.id);
     res.send(list)
   },
+
   addProduct: async function(req, res) {
-    console.log(req);
-    commerce = req.body.commerceName;
-    product = {
+    const commerce = req.body.commerceName;
+    const product = {
       nombre: req.body.nombre,
       descripcion: req.body.descripcion,
       precio: req.body.precio, 
@@ -50,15 +65,17 @@ module.exports = {
       cantidad: req.body.cantidad,
       imagen: req.body.imagen,
     };
-    console.log(product);
-    
+    const validate = await commerceModel.addProduct(commerce, product);
+    res.sendStatus(201);
+  },
 
-    // hacemos pequeñas comprobaciones
-    /*if(product.nombre == "" || product.descripcion == "" || product.precio == "" || product.descuento == "" || product.cantidad == ""){
-      res.sendStatus(400);
-    }else{*/
-        const validate = await commerceModel.addProduct(product);
-        res.sendStatus(201);
-    //  }
-    }
+  deleteProduct: async function(req, res) {
+    const commerceName = req.body.commerceName;
+    const codProd = req.body.codProd;
+    console.log("nombre comercio y codprod", commerceName, codProd);
+
+    const validate = await commerceModel.deleteProduct(commerceName, codProd);
+    res.sendStatus(201);
+  },
+  
 };

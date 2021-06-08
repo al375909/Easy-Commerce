@@ -12,7 +12,10 @@ module.exports = {
     return commerceDao.createCommerce(commerce);
   }, 
 
-
+  async updateProduct(product){
+    console.log(product);
+    return commerceDao.updateProduct(product);
+  },
 
   async getProducts(commerceName){
     return commerceDao.getProducts(commerceName);
@@ -27,20 +30,21 @@ module.exports = {
     }
   },
 
-
-
   async loginCommerce(username, password){
     const res = commerceDao.loginCommerce(username, password);
   },
 
+  async addProduct(commerceName, product){
+    const commerce = await commerceDao.getCommerce(commerceName);
+    if (commerce.length>0){ // si existe el comercio al que asignar el producto
+      product = await commerceDao.addProductToCatalog(commerceName, product);
+    }
+  },
 
-  
-  //  TODOO: TERMINARLO BIEN Y HACER EL LOGIN (COMO MINIMO)
-  async addProduct(commerce, product){
-    // comprobamos que exista el comercio
-
-    if(commerceDao.getCommerce(commerce)){ // si existe el comercio al que asignar el producto
-      const product = commerceDao.addProduct(commerce, product);
+  async deleteProduct(commerceName, codProd){
+    const commerce = await commerceDao.getCommerce(commerceName);
+    if (commerce.length>0){ // si existe el comercio al que asignar el producto
+      product = await commerceDao.deleteProductToCatalog(commerceName, codProd);
     }
   }
 };

@@ -7,7 +7,7 @@ import { getDroppedOrSelectedFiles } from 'html5-file-selector'
 import SessionContext from "../../../../../context/session";
 import { Link } from "react-router-dom";
 
-export default function AddProductForm(){
+export default function ModifyProductForm({product}){
     
     const [file, setFile] = useState('');
     const {user, setUser} = useContext(SessionContext);
@@ -29,20 +29,21 @@ export default function AddProductForm(){
       }
 
     const handleFormSubmit  = async (event) => {
-        let myForm = document.getElementById('addProductForm');
+        let myForm = document.getElementById('updateProductForm');
         let formData = new FormData(myForm);    
         console.log("FORM", formData);
         console.log("Nom product", formData.get("inputNomProd"));
         console.log("Imagen", imagen);
         console.log("archivo", archivo);
-        await axios.post("/api/tiendas/addProduct", {
+        await axios.post("/api/tiendas/updateProduct", {
+            codprod:product.codprod,
             nombre: formData.get("nombre"),
             descripcion:  formData.get("descripcion"),
             precio:  formData.get("precio"),
             descuento:  formData.get("descuento"),
             cantidad:  formData.get("cantidad"),
-            imagen: file,
-            commerceName: user.username})
+            //imagen: file,
+        })
         .then(res => {
             console.log("Producto enviado al back-end");
         })
@@ -59,7 +60,7 @@ export default function AddProductForm(){
         })
       }
 
-
+    
     return(
 
         <>
@@ -67,53 +68,42 @@ export default function AddProductForm(){
             <div class="card-body">   
                 <div class="form-content my-2">
                 <br/>
-                <h2 className="card-title">Añadir un nuevo producto</h2>
+                <h2 className="card-title">Modificar producto</h2>
                 <br/>
-                <form /*onSubmit={handleFormSubmit}*/ name="addProductForm" id="addProductForm">
+                <form /*onSubmit={handleFormSubmit}*/ name="updateProductForm" id="updateProductForm">
                     <div class="form-group">
                         <label for="inputNomProd" class="form-label">Nombre del producto</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Por ejemplo: Lata de Sardinas" maxlength="50" required/>
+                        <input type="text" class="form-control" defaultValue={product.nombre} name="nombre" id="nombre"  maxlength="50" required/>
                     </div>
                     <div class="form-group">
                         <label for="inputDescripcionProd" class="form-label">Descripción del producto</label>
-                        <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Lata de sardina de alta calidad pescadas en el Mar Mediterráneo
-                            Peso escurrido: 250gr" maxlength="500" required></textarea>
+                        <textarea class="form-control" defaultValue={product.descripcion} name="descripcion" id="descripcion"  maxlength="500" required></textarea>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputPrecio" class="form-label">Precio</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control"  name="precio" id="precio" min="0" step="0.01" placeholder="Indique el precio por unidad" required/>
+                                <input type="number" defaultValue={product.precio} class="form-control"  name="precio" id="precio" min="0" step="0.01"  required/>
                                 <span class="input-group-text">€</span>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputDescuento" class="form-label">Descuento</label>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control" name="descuento" id="descuento" min="0" max="100" placeholder="Indique el descuento del producto" required/>
+                                <input type="number" defaultValue={product.descuento*100} class="form-control" name="descuento" id="descuento" min="0" max="100"  required/>
                                 <span class="input-group-text">%</span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputInvent" class="form-label">Inventario</label>
-                        <input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Indique el número de unidades" min="0" required/>
+                        <input type="number" defaultValue={product.cantidad} class="form-control" name="cantidad" id="cantidad"  min="0" required/>
                     </div>
                     <div>
-                        <div className="form-group dropbox">
-                            <label htmlFor="inputInvent" className="form-label">Imagen del producto</label>
-                            
-                            <Dropzone
-                            maxFiles={1}
-                            getFilesFromEvent={getFilesFromEvent}
-                            inputContent={'Arrastre la imagen o haga click para explorar'}
-                            styles={{ dropzone: { minHeight: 200, maxHeight: 250 } }}
-                            />
-                        </div>
                         
                         <div class="col-6">
                         <Link to="/">
-                        <button type="button" onClick={handleFormSubmit} class="btn btn-success float-right">Subir artículo</button>
+                        <button type="button" onClick={handleFormSubmit} class="btn btn-success float-right">Modificar artículo</button>
                         </Link>
                         </div>
                         
