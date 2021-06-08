@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import SessionContext from "../../../../context/session";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 
 export default function PurchasePayment({ totalCost }) {
@@ -84,7 +85,9 @@ export default function PurchasePayment({ totalCost }) {
                 </div>
 
                 <div className="submit-order">
-                    <button className="btn btn-primary" onClick={onPurchase}>Confirmar pedido</button>
+                    <Link to="/orders">
+                        <button className="btn btn-primary" onClick={onPurchase}>Confirmar pedido</button>
+                    </Link>
                 </div>
             </div>
 
