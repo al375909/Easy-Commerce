@@ -23,7 +23,10 @@ module.exports = {
                 }
             }*/
             // Después de las comprobaciones añadimos el pedido
+            console.log("Modelo antes")
             const codped = await clientDao.addOrder(paymentMethod, client, commerce);
+            console.log("Modelo despues", codped);
+
             if (codped >= 0) {
                 if (!await clientDao.addItems(items, codped)) {
                     await clientDao.deleteOrder(codped);

@@ -4,7 +4,7 @@ export default function Order({ codped, order }) {
 
         <div className="order-item" key={codped}>
             <div className="order-date">
-                <h6>{new Date(order[0].fecha).getDay()}/{new Date(order[0].fecha).getMonth()}/{new Date(order[0].fecha).getFullYear()}</h6>
+                <h6>{order[0].fecha.substring(0,10)}</h6>
             </div>
 
             <div className="tienda-info">

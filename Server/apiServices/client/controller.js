@@ -2,6 +2,7 @@ const clientModel = require("./model");
 
 module.exports = {
     addOrder: async function (req, res) {
+        console.log("controller antes", req.body);
         const paymentMethod = req.body.paymentMethod;
         const commerceName = req.body.commerce;
         const clientName = req.body.client;
@@ -12,6 +13,7 @@ module.exports = {
 
 
         const inserted = await clientModel.addOrder(clientName, commerceName, paymentMethod, items);
+        console.log("controller despues", inserted);
 
         if (!inserted) {
             res.send("ERROR: PRODUCTO INEXISTENTE O DATOS NO CORRECTOS");

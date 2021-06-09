@@ -85,7 +85,7 @@ export default function PurchasePayment({ totalCost }) {
                 </div>
 
                 <div className="submit-order">
-                    <Link to="/orders">
+                    <Link to="/">
                         <button className="btn btn-primary" onClick={onPurchase}>Confirmar pedido</button>
                     </Link>
                 </div>
